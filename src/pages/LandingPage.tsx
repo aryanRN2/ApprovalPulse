@@ -17,6 +17,7 @@ import {
   Check,
   Play,
   X,
+  Menu,
   FileCheck2,
   ChevronRight,
   LogOut,
@@ -66,6 +67,7 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   // State
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [roleModalOpen, setRoleModalOpen] = useState(false);
   const [activePreviewTab, setActivePreviewTab] = useState<'timeline' | 'scrutiny' | 'regional'>('timeline');
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(0);
@@ -88,6 +90,7 @@ export default function LandingPage() {
   const handleLaunchRole = (userId: string, targetRoute: string) => {
     login(userId);
     setRoleModalOpen(false);
+    setMobileMenuOpen(false);
     navigate(targetRoute);
   };
 
@@ -99,8 +102,14 @@ export default function LandingPage() {
     }
   };
 
+  const scrollToSection = (id: string) => {
+    setMobileMenuOpen(false);
+    const el = document.getElementById(id);
+    el?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen bg-white text-ink font-sans">
+    <div className="min-h-screen bg-white text-ink font-sans overflow-x-hidden">
       {/* ── Navigation Bar ────────────────────────────────────── */}
       <header className="sticky top-0 z-40 w-full border-b border-border bg-white">
         <div className="content-width h-14 flex items-center justify-between">
@@ -135,7 +144,7 @@ export default function LandingPage() {
                 <button
                   onClick={() => logout()}
                   title="Sign Out"
-                  className="btn-ghost text-xs p-1"
+                  className="btn-ghost text-xs p-1.5"
                 >
                   <LogOut size={14} />
                 </button>
@@ -144,7 +153,7 @@ export default function LandingPage() {
               <>
                 <button
                   onClick={() => navigate('/login')}
-                  className="btn-ghost text-xs whitespace-nowrap"
+                  className="btn-ghost text-xs whitespace-nowrap hidden sm:inline-flex"
                 >
                   Portal Sign In
                 </button>
@@ -152,37 +161,111 @@ export default function LandingPage() {
                   onClick={() => setRoleModalOpen(true)}
                   className="btn-primary text-xs whitespace-nowrap"
                 >
-                  <span>Try Demo Roles</span>
+                  <span>Demo Roles</span>
                   <ChevronRight size={13} />
                 </button>
               </>
             )}
+
+            {/* Mobile Menu Toggle Button */}
+            <button
+              id="landing-mobile-menu-btn"
+              onClick={() => setMobileMenuOpen(v => !v)}
+              className="md:hidden btn-ghost p-1.5 text-ink flex items-center justify-center -mr-1"
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Dropdown Navigation Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-border bg-white px-4 py-3 space-y-2 shadow-lg animate-in slide-in-from-top-2 duration-150">
+            <nav className="flex flex-col space-y-1 text-sm font-medium">
+              <button
+                onClick={() => scrollToSection('workflow')}
+                className="text-left py-2 px-2 rounded hover:bg-surface text-ink transition-colors"
+              >
+                Workflow Pipeline
+              </button>
+              <button
+                onClick={() => scrollToSection('features')}
+                className="text-left py-2 px-2 rounded hover:bg-surface text-ink transition-colors"
+              >
+                Architectural Features
+              </button>
+              <button
+                onClick={() => scrollToSection('personas')}
+                className="text-left py-2 px-2 rounded hover:bg-surface text-ink transition-colors"
+              >
+                Role Personas &amp; Logins
+              </button>
+              <button
+                onClick={() => scrollToSection('architecture')}
+                className="text-left py-2 px-2 rounded hover:bg-surface text-ink transition-colors"
+              >
+                Time Simulator
+              </button>
+              <button
+                onClick={() => scrollToSection('faq')}
+                className="text-left py-2 px-2 rounded hover:bg-surface text-ink transition-colors"
+              >
+                FAQ
+              </button>
+            </nav>
+
+            <div className="pt-2 border-t border-border flex flex-col gap-1.5">
+              {!user ? (
+                <>
+                  <button
+                    onClick={() => { setMobileMenuOpen(false); navigate('/login'); }}
+                    className="btn-secondary w-full justify-center text-xs py-2"
+                  >
+                    Portal Sign In
+                  </button>
+                  <button
+                    onClick={() => { setMobileMenuOpen(false); setRoleModalOpen(true); }}
+                    className="btn-primary w-full justify-center text-xs py-2"
+                  >
+                    Select Demo Role
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => { setMobileMenuOpen(false); navigate(ROLE_INFO[user.role]?.route ?? '/institution'); }}
+                  className="btn-primary w-full justify-center text-xs py-2"
+                >
+                  Enter Workspace
+                </button>
+              )}
+            </div>
+          </div>
+        )}
       </header>
 
       {/* ── Main Content Container ────────────────────────────── */}
       <main>
         {/* ── Hero Section ────────────────────────────────────── */}
-        <section className="py-6 sm:py-8 text-center content-width">
+        <section className="py-6 sm:py-10 text-center content-width">
           {/* Main Title */}
-          <h1 className="text-3xl font-semibold text-ink leading-tight max-w-3xl mx-auto">
-            Transparent Approvals. <br />
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-ink leading-tight max-w-3xl mx-auto px-1">
+            Transparent Approvals. <br className="hidden sm:inline" />
             <span className="text-accent">Zero Administrative Opacity.</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-2 text-sm text-muted max-w-xl mx-auto leading-relaxed">
+          <p className="mt-2.5 text-xs sm:text-sm text-muted max-w-xl mx-auto leading-relaxed px-2">
             ApprovalPulse re-engineers the AICTE accreditation lifecycle into an SLA-guaranteed,
             conflict-free digital pipeline. Real-time parcel tracking, split-screen scrutiny, and human-in-the-loop governance.
           </p>
 
           {/* CTAs */}
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5">
+          <div className="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 max-w-xs sm:max-w-none mx-auto">
             <button
               id="hero-launch-demo"
               onClick={handlePrimaryCta}
-              className="btn-primary text-sm px-2.5 py-1 whitespace-nowrap"
+              className="btn-primary text-sm px-4 py-2 whitespace-nowrap w-full sm:w-auto"
             >
               <span>Launch Live System Demo</span>
               <ArrowRight size={14} />
@@ -193,7 +276,7 @@ export default function LandingPage() {
                 const el = document.getElementById('interactive-preview');
                 el?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="btn-secondary text-sm px-2.5 py-1 whitespace-nowrap"
+              className="btn-secondary text-sm px-4 py-2 whitespace-nowrap w-full sm:w-auto"
             >
               <Play size={13} className="text-muted" />
               <span>Explore Interactive Mockup</span>
@@ -201,21 +284,21 @@ export default function LandingPage() {
           </div>
 
           {/* Micro Trust Indicators */}
-          <div className="mt-4 pt-3 border-t border-border flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted">
+          <div className="mt-5 pt-3 border-t border-border flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-muted px-2">
             <span className="flex items-center gap-1">
-              <CheckCircle2 size={13} className="text-success" />
+              <CheckCircle2 size={13} className="text-success flex-shrink-0" />
               <span>APH 2024-25 SLA Standard</span>
             </span>
             <span className="flex items-center gap-1">
-              <ShieldCheck size={13} className="text-accent" />
+              <ShieldCheck size={13} className="text-accent flex-shrink-0" />
               <span>Proximity Clash Prevention</span>
             </span>
             <span className="flex items-center gap-1">
-              <Scale size={13} className="text-muted" />
+              <Scale size={13} className="text-muted flex-shrink-0" />
               <span>Legal Quorum Human Voting</span>
             </span>
             <span className="flex items-center gap-1">
-              <Lock size={13} className="text-muted" />
+              <Lock size={13} className="text-muted flex-shrink-0" />
               <span>Tamper-Proof Audit Trail</span>
             </span>
           </div>
@@ -225,47 +308,50 @@ export default function LandingPage() {
         <section id="interactive-preview" className="content-width pb-6">
           <div className="card overflow-hidden p-0">
             {/* Top Toolbar / Tab Switcher */}
-            <div className="px-3 py-1.5 bg-surface border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="px-3 py-2 bg-surface border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div className="flex items-center gap-1.5">
                 <div className="flex gap-1">
                   <div className="w-[8px] h-[8px] rounded-full bg-border" />
                   <div className="w-[8px] h-[8px] rounded-full bg-border" />
                   <div className="w-[8px] h-[8px] rounded-full bg-border" />
                 </div>
-                <span className="text-xs font-mono text-muted ml-1.5">approvalpulse.aicte.gov.in</span>
+                <span className="text-xs font-mono text-muted ml-1.5 truncate">approvalpulse.aicte.gov.in</span>
               </div>
 
-              {/* View Switcher Tabs */}
-              <div className="inline-flex rounded border border-border bg-white text-xs">
+              {/* View Switcher Tabs (Scrollable on small mobile) */}
+              <div className="inline-flex rounded border border-border bg-white text-xs overflow-x-auto max-w-full touch-scroll no-scrollbar p-0.5">
                 <button
                   onClick={() => setActivePreviewTab('timeline')}
-                  className={`px-2 py-0.5 text-xs font-semibold whitespace-nowrap transition-colors ${
+                  className={`px-2.5 py-1 text-xs font-semibold whitespace-nowrap transition-colors rounded-sm ${
                     activePreviewTab === 'timeline'
                       ? 'bg-accent text-white'
                       : 'text-muted hover:text-ink'
                   }`}
                 >
-                  Parcel Milestone Tracker
+                  <span className="hidden sm:inline">Parcel Milestone Tracker</span>
+                  <span className="sm:hidden">Milestones</span>
                 </button>
                 <button
                   onClick={() => setActivePreviewTab('scrutiny')}
-                  className={`px-2 py-0.5 text-xs font-semibold whitespace-nowrap border-l border-border transition-colors ${
+                  className={`px-2.5 py-1 text-xs font-semibold whitespace-nowrap border-l border-border transition-colors rounded-sm ${
                     activePreviewTab === 'scrutiny'
                       ? 'bg-accent text-white'
                       : 'text-muted hover:text-ink'
                   }`}
                 >
-                  Split-Screen Scrutiny
+                  <span className="hidden sm:inline">Split-Screen Scrutiny</span>
+                  <span className="sm:hidden">Scrutiny</span>
                 </button>
                 <button
                   onClick={() => setActivePreviewTab('regional')}
-                  className={`px-2 py-0.5 text-xs font-semibold whitespace-nowrap border-l border-border transition-colors ${
+                  className={`px-2.5 py-1 text-xs font-semibold whitespace-nowrap border-l border-border transition-colors rounded-sm ${
                     activePreviewTab === 'regional'
                       ? 'bg-accent text-white'
                       : 'text-muted hover:text-ink'
                   }`}
                 >
-                  Regional Pendency Matrix
+                  <span className="hidden sm:inline">Regional Pendency Matrix</span>
+                  <span className="sm:hidden">Regional</span>
                 </button>
               </div>
             </div>
@@ -806,44 +892,45 @@ export default function LandingPage() {
 
       {/* ── Role Selector Modal ───────────────────────────────── */}
       {roleModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/40">
-          <div className="card w-full max-w-md p-3 space-y-3 shadow-lg">
-            <div className="flex items-center justify-between pb-2 border-b border-border">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/40 backdrop-blur-sm">
+          <div className="card w-full max-w-md p-3 sm:p-4 space-y-3 shadow-2xl max-h-[90vh] flex flex-col animate-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between pb-2 border-b border-border flex-shrink-0">
               <div>
-                <h3 className="font-semibold text-ink text-sm">Select Persona for Live Evaluation</h3>
-                <p className="text-xs text-muted">Choose a user role to authenticate instantly with pre-populated case files.</p>
+                <h3 className="font-semibold text-ink text-sm sm:text-base">Select Persona for Live Evaluation</h3>
+                <p className="text-xs text-muted mt-0.5">Choose a user role to authenticate instantly with pre-populated case files.</p>
               </div>
               <button
                 onClick={() => setRoleModalOpen(false)}
-                className="btn-ghost p-1 text-muted hover:text-ink"
+                className="btn-ghost p-1.5 text-muted hover:text-ink -mr-1"
+                aria-label="Close dialog"
               >
-                <X size={16} />
+                <X size={18} />
               </button>
             </div>
 
-            <div className="max-h-[50vh] overflow-y-auto space-y-1.5 pr-1">
+            <div className="overflow-y-auto space-y-1.5 pr-1 flex-1 touch-scroll">
               {MOCK_USERS.map(userItem => {
                 const info = ROLE_INFO[userItem.role];
                 return (
                   <div
                     key={userItem.id}
                     onClick={() => handleLaunchRole(userItem.id, info.route)}
-                    className="card-sm hover:border-accent hover:bg-surface cursor-pointer transition-colors flex items-center justify-between group"
+                    className="card-sm hover:border-accent hover:bg-surface cursor-pointer transition-colors flex items-center justify-between group min-h-[44px]"
                   >
-                    <div>
-                      <span className="font-semibold text-xs text-ink group-hover:text-accent transition-colors">
+                    <div className="min-w-0 pr-2">
+                      <span className="font-semibold text-xs sm:text-sm text-ink group-hover:text-accent transition-colors block truncate">
                         {userItem.name}
                       </span>
-                      <p className="text-[11px] text-muted mt-0.5">{info.title}</p>
+                      <p className="text-[11px] text-muted mt-0.5 truncate">{info.title}</p>
                     </div>
-                    <ArrowRight size={13} className="text-muted group-hover:text-accent group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight size={14} className="text-muted group-hover:text-accent group-hover:translate-x-0.5 transition-transform flex-shrink-0" />
                   </div>
                 );
               })}
             </div>
 
-            <div className="pt-2 flex justify-between items-center text-xs text-muted border-t border-border">
-              <span>Demo OTP: <strong>123456</strong></span>
+            <div className="pt-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs text-muted border-t border-border flex-shrink-0">
+              <span>Demo OTP: <strong className="text-ink">123456</strong></span>
               <button
                 onClick={() => {
                   setRoleModalOpen(false);

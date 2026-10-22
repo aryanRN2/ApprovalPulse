@@ -38,26 +38,37 @@ export default function AppLayout() {
     navigate('/login');
   };
 
-  const SidebarContent = () => (
+  const SidebarContent = ({ isMobile = false }: { isMobile?: boolean }) => (
     <nav className="flex flex-col h-full">
-      {/* Logo */}
-      <NavLink to="/" title="ApprovalPulse Overview" className="flex items-center gap-2 px-3 py-4 border-b border-border hover:bg-surface transition-colors group">
-        <div className="w-7 h-7 bg-accent rounded flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-          <span className="text-white text-xs font-semibold">AP</span>
-        </div>
-        <div>
-          <p className="text-sm font-semibold text-ink leading-none">ApprovalPulse</p>
-          <p className="text-xs text-muted leading-none mt-0.5">AICTE Platform</p>
-        </div>
-      </NavLink>
+      {/* Logo & Close */}
+      <div className="flex items-center justify-between border-b border-border pr-2">
+        <NavLink to="/" title="ApprovalPulse Overview" className="flex items-center gap-2 px-3 py-3.5 hover:bg-surface transition-colors group flex-1">
+          <div className="w-7 h-7 bg-accent rounded flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+            <span className="text-white text-xs font-semibold">AP</span>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-ink leading-none">ApprovalPulse</p>
+            <p className="text-[11px] text-muted leading-none mt-1">AICTE Platform</p>
+          </div>
+        </NavLink>
+        {isMobile && (
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="btn-ghost p-1.5 text-muted hover:text-ink"
+            aria-label="Close sidebar"
+          >
+            <X size={18} />
+          </button>
+        )}
+      </div>
 
       {/* Nav links */}
-      <div className="flex-1 overflow-y-auto py-3 px-2 space-y-0.5">
+      <div className="flex-1 overflow-y-auto py-3 px-2 space-y-0.5 touch-scroll">
         {visibleNav.map(item => (
           <NavLink
             key={item.to}
             to={item.to}
-            className={({ isActive }) => clsx('nav-link', { active: isActive })}
+            className={({ isActive }) => clsx('nav-link min-h-[40px]', { active: isActive })}
             onClick={() => setSidebarOpen(false)}
           >
             {item.icon}
@@ -67,15 +78,15 @@ export default function AppLayout() {
       </div>
 
       {/* User info */}
-      <div className="px-2 py-3 border-t border-border">
+      <div className="px-2 py-3 border-t border-border bg-surface/50">
         <div className="card-sm">
           <p className="text-xs font-semibold text-ink truncate">{user?.name}</p>
-          <p className="text-xs text-muted truncate">{user?.email}</p>
-          {user?.region && <p className="text-xs text-muted">{user.region}</p>}
+          <p className="text-[11px] text-muted truncate">{user?.email}</p>
+          {user?.region && <p className="text-[11px] text-muted truncate">{user.region}</p>}
         </div>
         <button
           id="btn-logout"
-          className="nav-link w-full mt-1 text-danger hover:bg-red-50 hover:text-danger"
+          className="nav-link w-full mt-1.5 text-danger hover:bg-red-50 hover:text-danger min-h-[38px]"
           onClick={handleLogout}
         >
           <LogOut size={14} />
@@ -94,57 +105,66 @@ export default function AppLayout() {
 
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
-        <div className="lg:hidden fixed inset-0 z-40 flex">
-          <div className="fixed inset-0 bg-black/20" onClick={() => setSidebarOpen(false)} />
-          <aside className="relative flex flex-col w-56 bg-white border-r border-border z-50">
-            <SidebarContent />
+        <div className="lg:hidden fixed inset-0 z-50 flex">
+          <div
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity"
+            onClick={() => setSidebarOpen(false)}
+            aria-hidden="true"
+          />
+          <aside className="relative flex flex-col w-64 max-w-[80vw] bg-white border-r border-border z-50 shadow-2xl h-full">
+            <SidebarContent isMobile={true} />
           </aside>
         </div>
       )}
 
       {/* Main content area */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden min-w-0">
         {/* Top bar */}
-        <header className="h-12 border-b border-border flex items-center justify-between px-3 flex-shrink-0">
-          <div className="flex items-center gap-2">
+        <header className="h-12 border-b border-border flex items-center justify-between px-3 flex-shrink-0 bg-white sticky top-0 z-30">
+          <div className="flex items-center gap-2 min-w-0">
             <button
-              className="lg:hidden btn-ghost p-1"
+              className="lg:hidden btn-ghost p-1.5 -ml-1 text-ink flex items-center justify-center"
               onClick={() => setSidebarOpen(true)}
               aria-label="Open menu"
             >
-              <Menu size={18} />
+              <Menu size={20} />
             </button>
+            <div className="flex items-center gap-1.5 lg:hidden">
+              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-surface border border-border text-ink capitalize truncate max-w-[140px] sm:max-w-none">
+                {user?.role.replace(/_/g, ' ')}
+              </span>
+            </div>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 flex-shrink-0">
             {/* Notifications */}
             <div className="relative">
               <button
                 id="btn-notifications"
-                className="btn-ghost p-1 relative"
+                className="btn-ghost p-1.5 relative"
                 onClick={() => { setNotifOpen(v => !v); setUserMenuOpen(false); }}
                 aria-label="Notifications"
               >
                 <Bell size={18} />
                 {unreadCount > 0 && (
-                  <span className="absolute top-0 right-0 w-4 h-4 bg-danger text-white text-[10px] font-semibold rounded-full flex items-center justify-center">
+                  <span className="absolute top-0.5 right-0.5 w-4 h-4 bg-danger text-white text-[10px] font-semibold rounded-full flex items-center justify-center">
                     {unreadCount}
                   </span>
                 )}
               </button>
 
               {notifOpen && (
-                <div className="absolute right-0 top-full mt-1 w-80 bg-white border border-border rounded shadow-sm z-50">
+                <div className="fixed sm:absolute right-2 sm:right-0 left-2 sm:left-auto top-12 sm:top-full mt-1 sm:w-80 bg-white border border-border rounded shadow-lg z-50 max-w-sm ml-auto">
                   <div className="flex items-center justify-between px-3 py-2 border-b border-border">
-                    <span className="text-sm font-semibold">Notifications</span>
+                    <span className="text-xs font-semibold">Notifications</span>
                     <button className="text-xs text-accent" onClick={markAllRead}>Mark all read</button>
                   </div>
-                  <div className="max-h-80 overflow-y-auto divide-y divide-border">
+                  <div className="max-h-72 overflow-y-auto divide-y divide-border touch-scroll">
                     {notifications.map(n => (
                       <div key={n.id} className={clsx('px-3 py-2', { 'bg-accent-light': !n.read })}>
                         <p className="text-xs font-semibold text-ink">{n.title}</p>
                         <p className="text-xs text-muted mt-0.5 leading-relaxed">{n.body}</p>
-                        <p className="text-[11px] text-muted mt-0.5">{new Date(n.createdAt).toLocaleDateString('en-IN')}</p>
+                        <p className="text-[10px] text-muted mt-0.5">{new Date(n.createdAt).toLocaleDateString('en-IN')}</p>
                       </div>
                     ))}
                   </div>
@@ -156,7 +176,7 @@ export default function AppLayout() {
             <div className="relative">
               <button
                 id="btn-user-menu"
-                className="btn-ghost flex items-center gap-1 text-sm"
+                className="btn-ghost flex items-center gap-1 text-sm p-1"
                 onClick={() => { setUserMenuOpen(v => !v); setNotifOpen(false); }}
               >
                 <div className="w-6 h-6 bg-accent rounded-full flex items-center justify-center">
@@ -169,10 +189,10 @@ export default function AppLayout() {
               </button>
 
               {userMenuOpen && (
-                <div className="absolute right-0 top-full mt-1 w-48 bg-white border border-border rounded shadow-sm z-50">
+                <div className="absolute right-0 top-full mt-1 w-48 bg-white border border-border rounded shadow-lg z-50">
                   <div className="px-3 py-2 border-b border-border">
-                    <p className="text-xs font-semibold">{user?.name}</p>
-                    <p className="text-xs text-muted capitalize">{user?.role.replace(/_/g, ' ')}</p>
+                    <p className="text-xs font-semibold truncate">{user?.name}</p>
+                    <p className="text-[11px] text-muted capitalize truncate">{user?.role.replace(/_/g, ' ')}</p>
                   </div>
                   <button className="flex items-center gap-2 w-full px-3 py-2 text-sm text-danger hover:bg-red-50" onClick={handleLogout}>
                     <LogOut size={14} />
@@ -185,8 +205,8 @@ export default function AppLayout() {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto">
-          <div className="content-width py-4">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden touch-scroll">
+          <div className="content-width py-3 sm:py-4">
             <div className="page-enter">
               <Outlet />
             </div>

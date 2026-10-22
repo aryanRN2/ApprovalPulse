@@ -99,13 +99,13 @@ export default function LoginPage() {
       </div>
 
       {/* Right panel */}
-      <div className="flex-1 flex items-center justify-center p-6">
+      <div className="flex-1 flex items-center justify-center p-4 sm:p-6">
         <div className="w-full max-w-sm">
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-2 mb-6 lg:hidden group text-left cursor-pointer"
+            className="flex items-center gap-2 mb-6 lg:hidden group text-left cursor-pointer min-h-[38px]"
           >
-            <div className="w-7 h-7 bg-accent rounded flex items-center justify-center">
+            <div className="w-7 h-7 bg-accent rounded flex items-center justify-center flex-shrink-0">
               <span className="text-white text-xs font-semibold">AP</span>
             </div>
             <div>
@@ -125,7 +125,7 @@ export default function LoginPage() {
                 <label className="form-label" htmlFor="role-select">Select Demo User</label>
                 <select
                   id="role-select"
-                  className="form-select"
+                  className="form-select min-h-[38px]"
                   value={selectedUser}
                   onChange={e => { setSelectedUser(e.target.value); setError(''); }}
                 >
@@ -147,7 +147,7 @@ export default function LoginPage() {
 
               {error && <p className="text-xs text-danger">{error}</p>}
 
-              <button id="btn-continue" className="btn-primary w-full justify-center" onClick={handleContinue}>
+              <button id="btn-continue" className="btn-primary w-full justify-center min-h-[40px]" onClick={handleContinue}>
                 Continue
               </button>
             </div>
@@ -158,7 +158,7 @@ export default function LoginPage() {
                   <p className="text-sm font-semibold">{selectedUserObj?.name}</p>
                   <p className="text-xs text-muted">{selectedUserObj?.email}</p>
                 </div>
-                <button className="btn-ghost text-xs" onClick={() => setStep('select')}>Change</button>
+                <button className="btn-ghost text-xs p-1" onClick={() => setStep('select')}>Change</button>
               </div>
 
               <div>
@@ -168,7 +168,7 @@ export default function LoginPage() {
                   type="text"
                   inputMode="numeric"
                   maxLength={6}
-                  className="form-input tracking-[0.3em] text-center font-semibold"
+                  className="form-input tracking-[0.3em] text-center font-semibold text-base py-2"
                   placeholder="• • • • • •"
                   value={otp}
                   onChange={e => { setOtp(e.target.value); setError(''); }}
@@ -179,7 +179,7 @@ export default function LoginPage() {
 
               {error && <p className="text-xs text-danger">{error}</p>}
 
-              <button id="btn-signin" className="btn-primary w-full justify-center" onClick={handleLogin}>
+              <button id="btn-signin" className="btn-primary w-full justify-center min-h-[40px]" onClick={handleLogin}>
                 Sign In
               </button>
             </div>

@@ -49,7 +49,7 @@ export default function EvcScheduler() {
       />
 
       {/* Tabs */}
-      <div className="border-b border-border flex gap-0">
+      <div className="border-b border-border flex gap-0 overflow-x-auto no-scrollbar touch-scroll">
         {[
           { key: 'calendar' as const, label: 'Calendar' },
           { key: 'queue' as const, label: `Queue (${MOCK_EVC_CASES.filter(c => c.status === 'queued').length})` },
@@ -58,7 +58,7 @@ export default function EvcScheduler() {
           <button
             key={tab.key}
             id={`evc-tab-${tab.key}`}
-            className={`px-3 py-2 text-sm border-b-2 transition-colors ${
+            className={`px-3 py-2 text-sm border-b-2 whitespace-nowrap transition-colors min-h-[38px] ${
               activeTab === tab.key
                 ? 'border-accent text-accent font-semibold'
                 : 'border-transparent text-muted hover:text-ink'
@@ -219,16 +219,16 @@ export default function EvcScheduler() {
       {activeTab === 'queue' && (
         <div className="space-y-2">
           {MOCK_EVC_CASES.map(c => (
-            <div key={c.id} className="card flex items-center justify-between gap-3">
-              <div>
-                <p className="text-sm font-semibold text-ink">{c.institutionName}</p>
-                <p className="text-xs text-muted">{c.region} · App: {c.applicationId}</p>
-                {c.confirmedDate && <p className="text-xs text-muted">Visit: {c.confirmedDate}</p>}
+            <div key={c.id} className="card flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-ink truncate">{c.institutionName}</p>
+                <p className="text-xs text-muted truncate">{c.region} · App: {c.applicationId}</p>
+                {c.confirmedDate && <p className="text-xs text-muted mt-0.5">Visit: {c.confirmedDate}</p>}
               </div>
-              <div className="flex flex-col items-end gap-1">
+              <div className="flex items-center justify-between sm:justify-end sm:flex-col sm:items-end gap-2 pt-2 sm:pt-0 border-t sm:border-0 border-border">
                 <StatusBadge status={c.status} />
                 {c.status === 'queued' && (
-                  <button className="btn-primary text-xs" onClick={() => setActiveTab('calendar')}>
+                  <button className="btn-primary text-xs w-full sm:w-auto" onClick={() => setActiveTab('calendar')}>
                     Schedule
                   </button>
                 )}
@@ -241,27 +241,31 @@ export default function EvcScheduler() {
       {activeTab === 'reports' && (
         <div className="space-y-2">
           {MOCK_EVC_CASES.filter(c => c.status === 'reported').map(c => (
-            <div key={c.id} className="card flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
+            <div key={c.id} className="card flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2 min-w-0">
                 <CheckSquare size={16} className="text-success flex-shrink-0" />
-                <div>
-                  <p className="text-sm font-semibold text-ink">{c.institutionName}</p>
-                  <p className="text-xs text-muted">Visit: {c.confirmedDate} · Members: {c.members.join(', ')}</p>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-ink truncate">{c.institutionName}</p>
+                  <p className="text-xs text-muted truncate">Visit: {c.confirmedDate} · Members: {c.members.join(', ')}</p>
                 </div>
               </div>
-              <button className="btn-secondary text-xs">View Report</button>
+              <div className="pt-2 sm:pt-0 border-t sm:border-0 border-border flex justify-end">
+                <button className="btn-secondary text-xs w-full sm:w-auto">View Report</button>
+              </div>
             </div>
           ))}
           {MOCK_EVC_CASES.filter(c => c.status === 'conducted').map(c => (
-            <div key={c.id} className="card flex items-center justify-between gap-3 border-amber-200">
-              <div className="flex items-center gap-2">
+            <div key={c.id} className="card flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-amber-200">
+              <div className="flex items-center gap-2 min-w-0">
                 <Clock size={16} className="text-warning flex-shrink-0" />
-                <div>
-                  <p className="text-sm font-semibold text-ink">{c.institutionName}</p>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-ink truncate">{c.institutionName}</p>
                   <p className="text-xs text-warning">Report pending upload</p>
                 </div>
               </div>
-              <button className="btn-primary text-xs">Upload Report</button>
+              <div className="pt-2 sm:pt-0 border-t sm:border-0 border-border flex justify-end">
+                <button className="btn-primary text-xs w-full sm:w-auto">Upload Report</button>
+              </div>
             </div>
           ))}
         </div>

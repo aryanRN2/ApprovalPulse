@@ -47,7 +47,7 @@ export default function RegionalDashboard() {
         actions={
           <select
             id="region-filter"
-            className="form-select w-40"
+            className="form-select w-full sm:w-44 text-xs min-h-[36px]"
             value={regionFilter}
             onChange={e => setRegionFilter(e.target.value)}
           >
@@ -58,25 +58,25 @@ export default function RegionalDashboard() {
       />
 
       {/* Stat cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
         {[
           { label: 'Total Applications', value: stats.total, icon: null, color: 'text-ink' },
-          { label: 'Active', value: stats.active, icon: <TrendingUp size={14} className="text-accent" />, color: 'text-accent' },
+          { label: 'Active Cases', value: stats.active, icon: <TrendingUp size={14} className="text-accent" />, color: 'text-accent' },
           { label: 'SLA Breached', value: stats.breached, icon: <AlertTriangle size={14} className="text-danger" />, color: 'text-danger' },
           { label: 'Approved (2024)', value: stats.approved, icon: <TrendingDown size={14} className="text-success" />, color: 'text-success' },
         ].map(s => (
           <div key={s.label} className="stat-card">
             <div className="flex items-center justify-between">
-              <span className="stat-label">{s.label}</span>
+              <span className="stat-label truncate">{s.label}</span>
               {s.icon}
             </div>
-            <span className={`stat-value ${s.color}`}>{s.value}</span>
+            <span className={`stat-value text-xl sm:text-2xl ${s.color}`}>{s.value}</span>
           </div>
         ))}
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-border flex gap-0">
+      <div className="border-b border-border flex gap-0 overflow-x-auto no-scrollbar touch-scroll">
         {[
           { key: 'overview' as const, label: 'Pendency Heatmap' },
           { key: 'applications' as const, label: 'Applications' },
@@ -85,7 +85,7 @@ export default function RegionalDashboard() {
           <button
             key={tab.key}
             id={`dash-tab-${tab.key}`}
-            className={`px-3 py-2 text-sm border-b-2 transition-colors ${
+            className={`px-3 py-2 text-sm border-b-2 whitespace-nowrap transition-colors min-h-[38px] ${
               activeTab === tab.key
                 ? 'border-accent text-accent font-semibold'
                 : 'border-transparent text-muted hover:text-ink'
@@ -102,35 +102,39 @@ export default function RegionalDashboard() {
         <div className="space-y-4">
           {/* Stacked bar chart */}
           <div className="card">
-            <h3 className="text-sm mb-3">Applications by Region and Stage</h3>
-            <ResponsiveContainer width="100%" height={240}>
-              <BarChart data={pendencyChartData} margin={{ top: 0, right: 0, bottom: 0, left: -20 }}>
-                <XAxis dataKey="region" tick={{ fontSize: 12 }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 12 }} axisLine={false} tickLine={false} />
-                <Tooltip
-                  contentStyle={{ border: '1px solid #E5E5E5', borderRadius: '4px', fontSize: '12px', boxShadow: 'none' }}
-                  formatter={(val: number, name: string) => [val, STAGE_LABELS[name as StageKey] ?? name]}
-                />
-                {STAGE_COLS.map((stage, i) => (
-                  <Bar key={stage} dataKey={stage} stackId="a" fill={STAGE_COLORS[i]} radius={i === STAGE_COLS.length - 1 ? [2, 2, 0, 0] : undefined} />
-                ))}
-              </BarChart>
-            </ResponsiveContainer>
+            <h3 className="text-sm mb-3 font-semibold">Applications by Region and Stage</h3>
+            <div className="w-full overflow-x-auto touch-scroll">
+              <div className="min-w-[320px]">
+                <ResponsiveContainer width="100%" height={240}>
+                  <BarChart data={pendencyChartData} margin={{ top: 0, right: 10, bottom: 0, left: -25 }}>
+                    <XAxis dataKey="region" tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+                    <YAxis tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+                    <Tooltip
+                      contentStyle={{ border: '1px solid #E5E5E5', borderRadius: '4px', fontSize: '12px', boxShadow: 'none' }}
+                      formatter={(val: number, name: string) => [val, STAGE_LABELS[name as StageKey] ?? name]}
+                    />
+                    {STAGE_COLS.map((stage, i) => (
+                      <Bar key={stage} dataKey={stage} stackId="a" fill={STAGE_COLORS[i]} radius={i === STAGE_COLS.length - 1 ? [2, 2, 0, 0] : undefined} />
+                    ))}
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
             {/* Legend */}
-            <div className="flex flex-wrap gap-3 mt-2">
+            <div className="flex flex-wrap gap-2.5 mt-2.5 pt-2 border-t border-border">
               {STAGE_COLS.map((stage, i) => (
-                <div key={stage} className="flex items-center gap-1">
-                  <span className="w-3 h-3 rounded-sm" style={{ background: STAGE_COLORS[i] }} />
-                  <span className="text-xs text-muted">{STAGE_LABELS[stage]}</span>
+                <div key={stage} className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ background: STAGE_COLORS[i] }} />
+                  <span className="text-[11px] text-muted">{STAGE_LABELS[stage]}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Region-stage table */}
-          <div className="card overflow-x-auto">
-            <h3 className="text-sm mb-3">Pendency Matrix</h3>
-            <table className="table-base min-w-full">
+          <div className="card overflow-x-auto touch-scroll">
+            <h3 className="text-sm mb-3 font-semibold">Pendency Matrix</h3>
+            <table className="table-base min-w-[500px]">
               <thead>
                 <tr>
                   <th>Region</th>
@@ -166,8 +170,8 @@ export default function RegionalDashboard() {
 
       {/* Applications list */}
       {activeTab === 'applications' && (
-        <div className="card overflow-x-auto">
-          <table className="table-base">
+        <div className="card overflow-x-auto touch-scroll">
+          <table className="table-base min-w-[640px]">
             <thead>
               <tr>
                 <th>Reference No.</th>

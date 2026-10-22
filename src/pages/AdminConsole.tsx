@@ -51,7 +51,7 @@ export default function AdminConsole() {
       />
 
       {/* Tabs */}
-      <div className="border-b border-border flex gap-0">
+      <div className="border-b border-border flex gap-0 overflow-x-auto no-scrollbar touch-scroll whitespace-nowrap">
         {[
           { key: 'workflow' as const, label: 'Workflow Templates', icon: <Database size={14} /> },
           { key: 'timelines' as const, label: 'SLA Timelines', icon: <Clock size={14} /> },
@@ -60,7 +60,7 @@ export default function AdminConsole() {
           <button
             key={tab.key}
             id={`admin-tab-${tab.key}`}
-            className={`flex items-center gap-1 px-3 py-2 text-sm border-b-2 transition-colors ${
+            className={`flex items-center gap-1.5 px-3 py-2 text-sm border-b-2 whitespace-nowrap transition-colors min-h-[38px] ${
               activeTab === tab.key
                 ? 'border-accent text-accent font-semibold'
                 : 'border-transparent text-muted hover:text-ink'
@@ -68,7 +68,7 @@ export default function AdminConsole() {
             onClick={() => setActiveTab(tab.key)}
           >
             {tab.icon}
-            {tab.label}
+            <span>{tab.label}</span>
           </button>
         ))}
       </div>
@@ -76,12 +76,12 @@ export default function AdminConsole() {
       {/* Workflow Templates */}
       {activeTab === 'workflow' && (
         <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-muted">Versioned workflow templates. Changes require a new version — active cases stay on their pinned version.</p>
-            <button className="btn-primary text-xs">+ New Template</button>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <p className="text-xs sm:text-sm text-muted">Versioned workflow templates. Changes require a new version — active cases stay on their pinned version.</p>
+            <button className="btn-primary text-xs w-full sm:w-auto whitespace-nowrap">+ New Template</button>
           </div>
-          <div className="card overflow-x-auto">
-            <table className="table-base">
+          <div className="card overflow-x-auto touch-scroll">
+            <table className="table-base min-w-[550px]">
               <thead>
                 <tr>
                   <th>Code</th>
@@ -128,13 +128,13 @@ export default function AdminConsole() {
                 { rule: 'Document Expiry Alert', trigger: '90/60/30/15/7 days before expiry', channels: 'In-App, Email', dedupe: 'Per threshold' },
                 { rule: 'Undertaking Overdue', trigger: 'Undertaking due date passed', channels: 'In-App, SMS', dedupe: '24h' },
               ].map(r => (
-                <div key={r.rule} className="flex items-start justify-between gap-2 py-1.5 border-t border-border first:border-0">
-                  <div>
+                <div key={r.rule} className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 py-2 border-t border-border first:border-0">
+                  <div className="min-w-0">
                     <p className="text-sm font-semibold text-ink">{r.rule}</p>
                     <p className="text-xs text-muted">{r.trigger}</p>
-                    <p className="text-xs text-muted">Channels: {r.channels} · Dedupe: {r.dedupe}</p>
+                    <p className="text-xs text-muted mt-0.5">Channels: {r.channels} · Dedupe: {r.dedupe}</p>
                   </div>
-                  <button className="btn-secondary text-xs flex-shrink-0">Edit Rule</button>
+                  <button className="btn-secondary text-xs flex-shrink-0 self-start sm:self-auto">Edit Rule</button>
                 </div>
               ))}
             </div>
@@ -145,9 +145,9 @@ export default function AdminConsole() {
       {/* SLA Timelines */}
       {activeTab === 'timelines' && (
         <div className="space-y-3">
-          <p className="text-sm text-muted">Configure standard working-day limits, warning thresholds, and escalation offsets per stage.</p>
-          <div className="card overflow-x-auto">
-            <table className="table-base">
+          <p className="text-xs sm:text-sm text-muted">Configure standard working-day limits, warning thresholds, and escalation offsets per stage.</p>
+          <div className="card overflow-x-auto touch-scroll">
+            <table className="table-base min-w-[500px]">
               <thead>
                 <tr>
                   <th>Stage</th>
@@ -189,13 +189,17 @@ export default function AdminConsole() {
                 { level: 'Level 3', offset: '+10 working days', target: 'National Bureau Officer', response: true },
                 { level: 'Level 4', offset: 'Prolonged inaction', target: 'Competent Authority', response: true },
               ].map(e => (
-                <div key={e.level} className="flex items-center justify-between py-1.5 border-b border-border last:border-0 text-sm">
-                  <span className="font-semibold w-16">{e.level}</span>
-                  <span className="text-muted flex-1">{e.offset}</span>
-                  <span className="flex-1">{e.target}</span>
-                  <span className={`badge ${e.response ? 'badge-amber' : 'badge-gray'} text-xs`}>
-                    {e.response ? 'Response Required' : 'Alert Only'}
-                  </span>
+                <div key={e.level} className="flex flex-col sm:flex-row sm:items-center justify-between py-2 border-b border-border last:border-0 text-sm gap-1 sm:gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-xs sm:text-sm">{e.level}</span>
+                    <span className="text-xs text-muted">({e.offset})</span>
+                  </div>
+                  <div className="flex items-center justify-between sm:justify-end gap-2 flex-1">
+                    <span className="text-xs text-ink">{e.target}</span>
+                    <span className={`badge ${e.response ? 'badge-amber' : 'badge-gray'} text-[11px]`}>
+                      {e.response ? 'Response Required' : 'Alert Only'}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>

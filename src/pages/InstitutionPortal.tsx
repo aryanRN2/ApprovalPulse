@@ -43,7 +43,7 @@ export default function InstitutionPortal() {
             <p className="text-base font-semibold text-ink">{app.refNo}</p>
             <p className="text-sm text-muted">{app.type} · Region: {app.region}</p>
           </div>
-          <div className="flex flex-col items-end gap-1">
+          <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-1 pt-2 sm:pt-0 border-t sm:border-0 border-border">
             <StatusBadge status={app.status} />
             <p className="text-xs text-muted">Submitted {app.submittedAt}</p>
           </div>
@@ -51,18 +51,18 @@ export default function InstitutionPortal() {
 
         <div className="divider my-3" />
 
-        <div className="grid grid-cols-3 gap-3">
-          <div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="card-sm sm:border-0 sm:p-0 bg-surface/50 sm:bg-transparent">
             <p className="text-xs text-muted">Current Stage</p>
             <p className="text-sm font-semibold mt-0.5">{STAGE_LABELS[app.currentStage]}</p>
           </div>
-          <div>
+          <div className="card-sm sm:border-0 sm:p-0 bg-surface/50 sm:bg-transparent">
             <p className="text-xs text-muted">SLA Status</p>
-            <div className="mt-0.5">
+            <div className="mt-1">
               <SlaBar percent={app.slaPercent} status={app.slaStatus} showLabel />
             </div>
           </div>
-          <div>
+          <div className="card-sm sm:border-0 sm:p-0 bg-surface/50 sm:bg-transparent">
             <p className="text-xs text-muted">Assigned Officer</p>
             <p className="text-sm font-semibold mt-0.5">{app.assignedOfficer}</p>
           </div>
@@ -70,12 +70,12 @@ export default function InstitutionPortal() {
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-border flex gap-0">
+      <div className="border-b border-border flex gap-0 overflow-x-auto no-scrollbar touch-scroll">
         {tabs.map(tab => (
           <button
             key={tab.key}
             id={`tab-${tab.key}`}
-            className={`px-3 py-2 text-sm border-b-2 transition-colors ${
+            className={`px-3 py-2 text-sm border-b-2 whitespace-nowrap transition-colors min-h-[38px] ${
               activeTab === tab.key
                 ? 'border-accent text-accent font-semibold'
                 : 'border-transparent text-muted hover:text-ink'
@@ -159,15 +159,15 @@ export default function InstitutionPortal() {
             <EmptyState message="No undertakings required for this application." />
           ) : (
             undertakings.map(u => (
-              <div key={u.id} className="card flex items-start justify-between gap-3">
+              <div key={u.id} className="card flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                 <div className="flex-1">
                   <p className="text-sm text-ink">{u.text}</p>
                   <p className="text-xs text-muted mt-0.5">Due: {u.dueAt} · Evidence: {u.evidenceRequired ? 'Required' : 'Not required'}</p>
                 </div>
-                <div className="flex flex-col items-end gap-1">
+                <div className="flex items-center justify-between sm:justify-start sm:flex-col sm:items-end gap-2 pt-2 sm:pt-0 border-t sm:border-0 border-border">
                   <StatusBadge status={u.status} />
                   {(u.status === 'open' || u.status === 'overdue') && (
-                    <button className="btn-primary text-xs">Upload Evidence</button>
+                    <button className="btn-primary text-xs w-full sm:w-auto">Upload Evidence</button>
                   )}
                 </div>
               </div>
@@ -180,20 +180,20 @@ export default function InstitutionPortal() {
       {activeTab === 'documents' && (
         <div className="space-y-2">
           {documents.map(doc => (
-            <div key={doc.id} className="card flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
+            <div key={doc.id} className="card flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2 min-w-0">
                 <FileText size={16} className="text-muted flex-shrink-0" />
-                <div>
-                  <p className="text-sm font-semibold text-ink">{doc.docType}</p>
-                  <p className="text-xs text-muted">Expires: {doc.expiryDate} · {doc.daysUntilExpiry} days remaining</p>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-ink truncate">{doc.docType}</p>
+                  <p className="text-xs text-muted truncate">Expires: {doc.expiryDate} · {doc.daysUntilExpiry} days remaining</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between sm:justify-end gap-2 pt-2 sm:pt-0 border-t sm:border-0 border-border">
                 <StatusBadge status={doc.status} />
                 {doc.status !== 'valid' && (
                   <button className="btn-primary text-xs">Renew</button>
                 )}
-                <ChevronRight size={14} className="text-muted" />
+                <ChevronRight size={14} className="text-muted hidden sm:block" />
               </div>
             </div>
           ))}

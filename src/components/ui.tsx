@@ -73,12 +73,12 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, subtitle, actions }: PageHeaderProps) {
   return (
-    <div className="section-header">
-      <div>
-        <h1 className="text-2xl">{title}</h1>
-        {subtitle && <p className="text-sm text-muted mt-0.5">{subtitle}</p>}
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-border mb-3">
+      <div className="min-w-0">
+        <h1 className="text-xl sm:text-2xl truncate">{title}</h1>
+        {subtitle && <p className="text-xs sm:text-sm text-muted mt-0.5 truncate">{subtitle}</p>}
       </div>
-      {actions && <div className="flex items-center gap-2">{actions}</div>}
+      {actions && <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">{actions}</div>}
     </div>
   );
 }

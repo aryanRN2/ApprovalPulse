@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { PageHeader, StatusBadge, SlaBar } from '../components/ui';
 import { MOCK_APPLICATIONS, STAGE_LABELS } from '../lib/data';
 import type { Application } from '../lib/data';
-import { Search, Filter, ChevronRight, ArrowRight, RotateCcw, AlertTriangle } from 'lucide-react';
+import { Search, Filter, ChevronRight, ArrowRight, ArrowLeft, RotateCcw, AlertTriangle } from 'lucide-react';
 
 export default function OfficerWorkbench() {
   const [search, setSearch] = useState('');
   const [stageFilter, setStageFilter] = useState('');
   const [selected, setSelected] = useState<Application | null>(null);
+  const [mobileView, setMobileView] = useState<'queue' | 'review'>('queue');
   const [showReturnModal, setShowReturnModal] = useState(false);
   const [returnReason, setReturnReason] = useState('');
   const [returnRemarks, setReturnRemarks] = useState('');
@@ -45,6 +46,11 @@ export default function OfficerWorkbench() {
 
   const allRequired = CHECKLIST_ITEMS.filter(i => i.required).every(i => checklist[i.id]);
 
+  const handleSelectApp = (app: Application) => {
+    setSelected(app);
+    setMobileView('review');
+  };
+
   return (
     <div className="space-y-4">
       <PageHeader
@@ -52,26 +58,40 @@ export default function OfficerWorkbench() {
         subtitle="Scrutiny queue and application review"
       />
 
+      {/* Mobile view indicator when reviewing on small screens */}
+      {selected && mobileView === 'review' && (
+        <div className="lg:hidden flex items-center justify-between pb-1">
+          <button
+            onClick={() => setMobileView('queue')}
+            className="btn-secondary text-xs flex items-center gap-1.5 min-h-[36px]"
+          >
+            <ArrowLeft size={14} />
+            <span>Back to Queue ({queue.length})</span>
+          </button>
+          <span className="text-xs text-muted font-mono">{selected.refNo}</span>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
         {/* Queue panel */}
-        <div className="lg:col-span-2 space-y-3">
+        <div className={`space-y-3 lg:col-span-2 ${selected && mobileView === 'review' ? 'hidden lg:block' : 'block'}`}>
           {/* Filters */}
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
-              <Search size={14} className="absolute left-2 top-1/2 -translate-y-1/2 text-muted" />
+              <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted" />
               <input
                 id="search-queue"
                 type="text"
                 placeholder="Search applications..."
-                className="form-input pl-6"
+                className="form-input pl-7"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
               />
             </div>
             <div className="relative">
-              <Filter size={14} className="absolute left-2 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
+              <Filter size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
               <select
-                className="form-select pl-6 pr-2"
+                className="form-select pl-7 pr-3 w-full sm:w-auto"
                 value={stageFilter}
                 onChange={e => setStageFilter(e.target.value)}
               >
@@ -93,21 +113,21 @@ export default function OfficerWorkbench() {
               <button
                 key={app.id}
                 id={`queue-item-${app.id}`}
-                className={`w-full text-left card hover:border-accent transition-colors ${selected?.id === app.id ? 'border-accent bg-accent-light' : ''}`}
-                onClick={() => setSelected(app)}
+                className={`w-full text-left card hover:border-accent transition-colors active:bg-surface ${selected?.id === app.id ? 'border-accent bg-accent-light' : ''}`}
+                onClick={() => handleSelectApp(app)}
               >
                 <div className="flex items-start justify-between gap-2">
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-ink truncate">{app.institutionName}</p>
-                    <p className="text-xs text-muted">{app.refNo}</p>
-                    <p className="text-xs text-muted">{app.type}</p>
+                    <p className="text-xs text-muted truncate">{app.refNo}</p>
+                    <p className="text-xs text-muted truncate">{app.type}</p>
                   </div>
                   <div className="flex flex-col items-end gap-1 flex-shrink-0">
                     <StatusBadge status={app.slaStatus === 'breached' ? 'overdue' : 'active'} />
                     <ChevronRight size={14} className="text-muted" />
                   </div>
                 </div>
-                <div className="mt-1.5">
+                <div className="mt-2">
                   <SlaBar percent={app.slaPercent} status={app.slaStatus} showLabel />
                 </div>
               </button>
@@ -116,7 +136,7 @@ export default function OfficerWorkbench() {
         </div>
 
         {/* Review panel */}
-        <div className="lg:col-span-3">
+        <div className={`lg:col-span-3 ${selected && mobileView === 'queue' ? 'hidden lg:block' : 'block'}`}>
           {!selected ? (
             <div className="flex items-center justify-center h-64 border border-dashed border-border rounded text-sm text-muted">
               Select an application from the queue to review.
@@ -125,14 +145,16 @@ export default function OfficerWorkbench() {
             <div className="card space-y-4">
               {/* App header */}
               <div>
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="text-base">{selected.institutionName}</h3>
-                    <p className="text-xs text-muted">{selected.refNo} · {selected.type} · {STAGE_LABELS[selected.currentStage]}</p>
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    <h3 className="text-base truncate">{selected.institutionName}</h3>
+                    <p className="text-xs text-muted mt-0.5">{selected.refNo} · {selected.type} · {STAGE_LABELS[selected.currentStage]}</p>
                   </div>
-                  <StatusBadge status={selected.status} />
+                  <div className="flex sm:justify-end">
+                    <StatusBadge status={selected.status} />
+                  </div>
                 </div>
-                <div className="mt-2">
+                <div className="mt-2.5">
                   <p className="text-xs text-muted mb-1">SLA Progress</p>
                   <SlaBar percent={selected.slaPercent} status={selected.slaStatus} showLabel />
                 </div>
@@ -142,55 +164,55 @@ export default function OfficerWorkbench() {
 
               {/* Checklist */}
               <div>
-                <h4 className="text-sm mb-2">Scrutiny Checklist</h4>
-                <div className="space-y-1.5">
+                <h4 className="text-sm mb-2 font-semibold">Scrutiny Checklist</h4>
+                <div className="space-y-2">
                   {CHECKLIST_ITEMS.map(item => (
                     <label
                       key={item.id}
-                      className="flex items-center gap-2 cursor-pointer group"
+                      className="flex items-start gap-2.5 cursor-pointer group p-1 rounded hover:bg-surface"
                     >
                       <input
                         type="checkbox"
                         id={item.id}
                         checked={!!checklist[item.id]}
                         onChange={() => toggleCheck(item.id)}
-                        className="w-4 h-4 accent-accent"
+                        className="w-4 h-4 mt-0.5 accent-accent flex-shrink-0"
                       />
-                      <span className={`text-sm ${checklist[item.id] ? 'text-muted line-through' : 'text-ink'}`}>
+                      <span className={`text-xs sm:text-sm flex-1 ${checklist[item.id] ? 'text-muted line-through' : 'text-ink'}`}>
                         {item.label}
                       </span>
-                      {item.required && <span className="text-[10px] text-danger font-semibold">Required</span>}
+                      {item.required && <span className="text-[10px] text-danger font-semibold flex-shrink-0">Required</span>}
                     </label>
                   ))}
                 </div>
               </div>
 
               {!allRequired && (
-                <div className="flex items-center gap-2 px-2 py-1.5 bg-amber-50 border border-amber-200 rounded text-xs text-warning">
-                  <AlertTriangle size={12} className="flex-shrink-0" />
-                  Complete all required checklist items before forwarding.
+                <div className="flex items-center gap-2 px-2.5 py-2 bg-amber-50 border border-amber-200 rounded text-xs text-warning">
+                  <AlertTriangle size={14} className="flex-shrink-0" />
+                  <span>Complete all required checklist items before forwarding.</span>
                 </div>
               )}
 
               <div className="divider" />
 
               {/* Actions */}
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <button
                   id="btn-forward"
-                  className="btn-primary"
+                  className="btn-primary w-full sm:w-auto"
                   disabled={!allRequired}
                 >
                   <ArrowRight size={14} />
-                  Forward to EVC
+                  <span>Forward to EVC</span>
                 </button>
                 <button
                   id="btn-return"
-                  className="btn-secondary"
+                  className="btn-secondary w-full sm:w-auto"
                   onClick={() => setShowReturnModal(true)}
                 >
                   <RotateCcw size={14} />
-                  Return for Deficiency
+                  <span>Return for Deficiency</span>
                 </button>
               </div>
             </div>
