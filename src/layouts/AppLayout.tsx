@@ -41,15 +41,15 @@ export default function AppLayout() {
   const SidebarContent = () => (
     <nav className="flex flex-col h-full">
       {/* Logo */}
-      <div className="flex items-center gap-2 px-3 py-4 border-b border-border">
-        <div className="w-7 h-7 bg-accent rounded flex items-center justify-center flex-shrink-0">
+      <NavLink to="/" title="ApprovalPulse Overview" className="flex items-center gap-2 px-3 py-4 border-b border-border hover:bg-surface transition-colors group">
+        <div className="w-7 h-7 bg-accent rounded flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
           <span className="text-white text-xs font-semibold">AP</span>
         </div>
         <div>
           <p className="text-sm font-semibold text-ink leading-none">ApprovalPulse</p>
           <p className="text-xs text-muted leading-none mt-0.5">AICTE Platform</p>
         </div>
-      </div>
+      </NavLink>
 
       {/* Nav links */}
       <div className="flex-1 overflow-y-auto py-3 px-2 space-y-0.5">

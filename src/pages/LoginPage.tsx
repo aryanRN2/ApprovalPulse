@@ -62,12 +62,19 @@ export default function LoginPage() {
       {/* Left panel */}
       <div className="hidden lg:flex flex-col justify-between w-96 border-r border-border p-6 bg-surface">
         <div>
-          <div className="flex items-center gap-2 mb-8">
-            <div className="w-8 h-8 bg-accent rounded flex items-center justify-center">
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 mb-8 group text-left cursor-pointer"
+            title="Return to Home"
+          >
+            <div className="w-8 h-8 bg-accent rounded flex items-center justify-center group-hover:scale-105 transition-transform">
               <span className="text-white text-xs font-semibold">AP</span>
             </div>
-            <span className="font-semibold text-ink">ApprovalPulse</span>
-          </div>
+            <div>
+              <span className="font-semibold text-ink group-hover:text-accent transition-colors">ApprovalPulse</span>
+              <p className="text-[11px] text-muted">← Back to Overview</p>
+            </div>
+          </button>
           <h2 className="text-2xl mb-2">AICTE Approval &amp; Compliance System</h2>
           <p className="text-sm text-muted leading-relaxed">
             Unified workflow management platform for technical institution approvals,
@@ -94,12 +101,18 @@ export default function LoginPage() {
       {/* Right panel */}
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="w-full max-w-sm">
-          <div className="flex items-center gap-2 mb-6 lg:hidden">
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 mb-6 lg:hidden group text-left cursor-pointer"
+          >
             <div className="w-7 h-7 bg-accent rounded flex items-center justify-center">
               <span className="text-white text-xs font-semibold">AP</span>
             </div>
-            <span className="font-semibold text-ink">ApprovalPulse</span>
-          </div>
+            <div>
+              <span className="font-semibold text-ink group-hover:text-accent transition-colors">ApprovalPulse</span>
+              <p className="text-[10px] text-muted">← Back to Overview</p>
+            </div>
+          </button>
 
           <h1 className="text-2xl mb-1">Sign in</h1>
           <p className="text-sm text-muted mb-5">

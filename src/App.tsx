@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './lib/auth';
 import AppLayout from './layouts/AppLayout';
+import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import InstitutionPortal from './pages/InstitutionPortal';
 import OfficerWorkbench from './pages/OfficerWorkbench';
@@ -20,26 +21,25 @@ function AppRoutes() {
 
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={user ? <Navigate to={getDefaultRoute(user.role)} replace /> : <LoginPage />} />
 
       <Route
-        path="/"
         element={
           <ProtectedRoute>
             <AppLayout />
           </ProtectedRoute>
         }
       >
-        <Route index element={<Navigate to={user ? getDefaultRoute(user.role) : '/login'} replace />} />
-        <Route path="institution" element={<InstitutionPortal />} />
-        <Route path="officer" element={<OfficerWorkbench />} />
-        <Route path="evc" element={<EvcScheduler />} />
-        <Route path="committee" element={<CommitteeDecisions />} />
-        <Route path="dashboard" element={<RegionalDashboard />} />
-        <Route path="admin" element={<AdminConsole />} />
+        <Route path="/institution" element={<InstitutionPortal />} />
+        <Route path="/officer" element={<OfficerWorkbench />} />
+        <Route path="/evc" element={<EvcScheduler />} />
+        <Route path="/committee" element={<CommitteeDecisions />} />
+        <Route path="/dashboard" element={<RegionalDashboard />} />
+        <Route path="/admin" element={<AdminConsole />} />
       </Route>
 
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
