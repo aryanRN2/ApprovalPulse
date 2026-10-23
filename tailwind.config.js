@@ -4,8 +4,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Geist', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Geist', 'Inter', 'sans-serif'],
+        editorial: ['"Instrument Serif"', 'Georgia', 'serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       colors: {
         ink: '#0F0F0F',
@@ -17,6 +19,14 @@ export default {
         danger: '#DC2626',
         warning: '#D97706',
         success: '#16A34A',
+        stone: {
+          bg: '#EBE9E5',
+          surface: '#F4F2EE',
+          ink: '#151514',
+          border: '#E2DFD8',
+          muted: '#6F6E69',
+          subtle: '#D8D5CD',
+        },
       },
       fontSize: {
         xs: ['14px', '20px'],
