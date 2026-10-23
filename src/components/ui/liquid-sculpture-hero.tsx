@@ -1061,8 +1061,11 @@ export interface SculptureHeroProps {
   theme?: "light" | "dark"
   /** Show the light/dark switch in the nav. */
   themeToggle?: boolean
+  onThemeChange?: (theme: "light" | "dark") => void
   textColor?: string
+  darkTextColor?: string
   accentColor?: string
+  darkAccentColor?: string
   headingFont?: string
   accentFont?: string
   bodyFont?: string
@@ -1459,10 +1462,10 @@ export default function SculptureHero(props: SculptureHeroProps) {
   React.useEffect(() => setMode(theme), [theme])
   const background = mode === "dark" ? darkBackground : lightBackground
   const bgRgb = React.useMemo(() => hexToRgb(background, [0.92, 0.91, 0.9]), [background])
-  // text follows the background unless set: light on dark grounds, dark on light ones
-  const darkBg = bgRgb[0] * 0.2126 + bgRgb[1] * 0.7152 + bgRgb[2] * 0.0722 < 0.45
-  const fg = textColor || (darkBg ? "#F1EFEA" : DEFAULTS.textColor)
-  const acc = accentColor || fg
+  // text follows the background: light text on dark grounds, dark text on light grounds
+  const darkBg = mode === "dark" || (bgRgb[0] * 0.2126 + bgRgb[1] * 0.7152 + bgRgb[2] * 0.0722 < 0.45)
+  const fg = darkBg ? (props.darkTextColor || "#F1EFEA") : (textColor || DEFAULTS.textColor)
+  const acc = darkBg ? (props.darkAccentColor || fg) : (accentColor || fg)
   const imgBgRgb = React.useMemo(
     () => (imageBackground ? hexToRgb(imageBackground, [0.918, 0.914, 0.906]) : null),
     [imageBackground]
@@ -1739,7 +1742,11 @@ export default function SculptureHero(props: SculptureHeroProps) {
                   type="button"
                   className="sh-theme"
                   aria-label={mode === "dark" ? "Switch to light theme" : "Switch to dark theme"}
-                  onClick={() => setMode((m) => (m === "dark" ? "light" : "dark"))}
+                  onClick={() => {
+                    const next = mode === "dark" ? "light" : "dark"
+                    setMode(next)
+                    props.onThemeChange?.(next)
+                  }}
                 >
                   {mode === "dark" ? <SunIcon /> : <MoonIcon />}
                 </button>
