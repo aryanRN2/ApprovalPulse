@@ -67,8 +67,8 @@ export default function LoginPage() {
             className="flex items-center gap-2 mb-8 group text-left cursor-pointer"
             title="Return to Home"
           >
-            <div className="w-8 h-8 bg-accent rounded flex items-center justify-center group-hover:scale-105 transition-transform">
-              <span className="text-white text-xs font-semibold">AP</span>
+            <div className="w-8 h-8 bg-[#151514] rounded-md flex items-center justify-center group-hover:scale-105 transition-transform shadow-xs">
+              <span className="text-white text-xs font-bold tracking-tight">AP</span>
             </div>
             <div>
               <span className="font-semibold text-ink group-hover:text-accent transition-colors">ApprovalPulse</span>
@@ -105,8 +105,8 @@ export default function LoginPage() {
             onClick={() => navigate('/')}
             className="flex items-center gap-2 mb-6 lg:hidden group text-left cursor-pointer min-h-[38px]"
           >
-            <div className="w-7 h-7 bg-accent rounded flex items-center justify-center flex-shrink-0">
-              <span className="text-white text-xs font-semibold">AP</span>
+            <div className="w-7 h-7 bg-[#151514] rounded-md flex items-center justify-center flex-shrink-0 shadow-xs">
+              <span className="text-white text-xs font-bold tracking-tight">AP</span>
             </div>
             <div>
               <span className="font-semibold text-ink group-hover:text-accent transition-colors">ApprovalPulse</span>

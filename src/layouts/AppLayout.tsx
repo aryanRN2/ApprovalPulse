@@ -43,8 +43,8 @@ export default function AppLayout() {
       {/* Logo & Close */}
       <div className="flex items-center justify-between border-b border-border pr-2">
         <NavLink to="/" title="ApprovalPulse Overview" className="flex items-center gap-2 px-3 py-3.5 hover:bg-surface transition-colors group flex-1">
-          <div className="w-7 h-7 bg-accent rounded flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-            <span className="text-white text-xs font-semibold">AP</span>
+          <div className="w-7 h-7 bg-[#151514] rounded-md flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform shadow-xs">
+            <span className="text-white text-xs font-bold tracking-tight">AP</span>
           </div>
           <div>
             <p className="text-sm font-semibold text-ink leading-none">ApprovalPulse</p>

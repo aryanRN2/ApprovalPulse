@@ -151,7 +151,14 @@ export default function LandingPage() {
       {/* ── HERO SECTION: 100svh WebGL2 Liquid Particle Sculpture ────────── */}
       <section className="relative w-full h-[100svh] overflow-hidden">
         <SculptureHero
-          brand="ApprovalPulse®"
+          brand={
+            <span className="inline-flex items-center gap-2">
+              <span className="w-5.5 h-5.5 rounded-md bg-[#151514] text-white text-[10px] font-bold tracking-tight inline-flex items-center justify-center flex-shrink-0 shadow-xs">
+                AP
+              </span>
+              <span>ApprovalPulse®</span>
+            </span>
+          }
           brandHref="#top"
           onBrandClick={(e) => {
             e.preventDefault();
@@ -817,7 +824,12 @@ export default function LandingPage() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-12 pb-12 sm:pb-16 border-b border-[#151514]/10">
           
           <div className="md:col-span-4">
-            <div className="text-lg font-medium tracking-tight mb-2">ApprovalPulse™</div>
+            <div className="flex items-center gap-2 text-lg font-medium tracking-tight mb-2">
+              <span className="w-6 h-6 rounded-md bg-[#151514] text-white text-[10px] font-bold tracking-tight inline-flex items-center justify-center flex-shrink-0 shadow-xs">
+                AP
+              </span>
+              <span>ApprovalPulse™</span>
+            </div>
             <p className="text-[#6F6E69] leading-relaxed max-w-xs">
               AICTE Technical Institution Approval &amp; Compliance Management System. Designed for the Smart India Hackathon (SIH).
             </p>
