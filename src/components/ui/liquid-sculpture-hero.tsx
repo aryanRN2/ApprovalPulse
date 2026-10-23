@@ -1251,17 +1251,49 @@ const CSS = `
   .sh-aside{justify-self:start;max-width:520px;padding-bottom:0}
   .sh-h1{font-size:clamp(40px,min(9.5cqw,9cqh),96px)}
 }
+.sh-menu-btn{display:none;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:transparent;
+  border:1px solid color-mix(in srgb,var(--sh-fg) 22%,transparent);color:inherit;cursor:pointer;transition:background .25s,color .25s}
+.sh-menu-btn:hover{background:var(--sh-fg);color:var(--sh-bg)}
+.sh-mobile-menu{position:absolute;top:calc(100% + 8px);left:clamp(14px,3.2cqw,24px);right:clamp(14px,3.2cqw,24px);
+  background:color-mix(in srgb,var(--sh-bg) 95%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid color-mix(in srgb,var(--sh-fg) 16%,transparent);border-radius:18px;
+  padding:16px 20px;box-shadow:0 20px 48px rgba(0,0,0,0.18);z-index:90;display:flex;flex-direction:column;gap:10px}
+.sh-mobile-link{color:inherit;text-decoration:none;font-size:15px;font-weight:500;padding:10px 4px;
+  border-bottom:1px solid color-mix(in srgb,var(--sh-fg) 8%,transparent);display:flex;align-items:center;justify-content:space-between}
+.sh-mobile-cta{display:flex;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:999px;
+  background:var(--sh-fg);color:var(--sh-bg);font-size:14px;font-weight:500;text-decoration:none;margin-top:6px}
 @container (max-width:767px){
   .sh-links li:not(.sh-keep){display:none}
+  .sh-navcta{display:none}
+  .sh-menu-btn{display:inline-flex}
+}
+@media (max-width:767px){
+  .sh-links li:not(.sh-keep){display:none}
+  .sh-navcta{display:none}
+  .sh-menu-btn{display:inline-flex}
 }
 @container (max-width:639px){
-  .sh-nav{padding-top:20px}
-  .sh-h1{font-size:clamp(36px,min(12.5cqw,7.2cqh),60px);line-height:.94}
-  .sh-body{font-size:15px;margin-bottom:20px}
-  .sh-eyebrow{font-size:11px}
-  .sh-ctas{gap:18px}
-  .sh-btn{height:48px}
-  .sh-content{padding-bottom:40px}
+  .sh-nav{padding-top:16px;padding-left:16px;padding-right:16px}
+  .sh-brand{font-size:15px}
+  .sh-h1{font-size:clamp(30px,min(11cqw,6.8cqh),48px);line-height:.96}
+  .sh-body{font-size:13.5px;line-height:1.45;margin-bottom:16px}
+  .sh-eyebrow{font-size:10px;margin-bottom:8px}
+  .sh-ctas{gap:12px}
+  .sh-btn{height:42px;padding:0 18px;font-size:13.5px}
+  .sh-txt{font-size:13.5px}
+  .sh-content{padding:0 16px 22px}
+  .sh-credit{right:auto;left:50%;transform:translateX(-50%)}
+}
+@media (max-width:639px){
+  .sh-nav{padding-top:16px;padding-left:16px;padding-right:16px}
+  .sh-brand{font-size:15px}
+  .sh-h1{font-size:clamp(30px,min(10.5vw,48px),48px);line-height:.96}
+  .sh-body{font-size:13.5px;line-height:1.45;margin-bottom:16px}
+  .sh-eyebrow{font-size:10px;margin-bottom:8px}
+  .sh-ctas{gap:12px}
+  .sh-btn{height:42px;padding:0 18px;font-size:13.5px}
+  .sh-txt{font-size:13.5px}
+  .sh-content{padding:0 16px 22px}
   .sh-credit{right:auto;left:50%;transform:translateX(-50%)}
 }
 @media (prefers-reduced-motion:reduce){
@@ -1281,6 +1313,18 @@ const SunIcon = () => (
 const MoonIcon = () => (
   <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
     <path d="M13.6 10.1A5.9 5.9 0 0 1 5.9 2.4a5.9 5.9 0 1 0 7.7 7.7Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+  </svg>
+)
+
+const MenuIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+  </svg>
+)
+
+const CloseIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
   </svg>
 )
 
@@ -1401,6 +1445,7 @@ export default function SculptureHero(props: SculptureHeroProps) {
   const engineRef = React.useRef<LiquidEngine | null>(null)
   const aspectRef = React.useRef(1983 / 793)
   const [isTouch, setIsTouch] = React.useState(false)
+  const [mobileNavOpen, setMobileNavOpen] = React.useState(false)
 
   const layout = React.useRef({ scale: sculptureScale, mobileScale: mobileSculptureScale, x: sculptureX, y: sculptureY })
   layout.current = {
@@ -1548,23 +1593,27 @@ export default function SculptureHero(props: SculptureHeroProps) {
         root.dataset.touched = "1"
       }
     }
+    let isTouchDown = false
     const onMove = (e: PointerEvent) => {
       const [x, y] = pos(e)
       const touch = e.pointerType === "touch"
-      if (touch && e.buttons === 0 && e.pressure === 0) return
+      if (touch && !isTouchDown && e.buttons === 0 && e.pressure === 0) return
       engine?.pointer("move", x, y, touch)
       markTouched()
     }
     const onDown = (e: PointerEvent) => {
+      if (e.pointerType === "touch") isTouchDown = true
       const [x, y] = pos(e)
       engine?.pointer("down", x, y, e.pointerType === "touch")
       markTouched()
     }
     const onUp = (e: PointerEvent) => {
+      if (e.pointerType === "touch") isTouchDown = false
       const [x, y] = pos(e)
       engine?.pointer("up", x, y, e.pointerType === "touch")
     }
     const onLeave = (e: PointerEvent) => {
+      if (e.pointerType === "touch") isTouchDown = false
       const [x, y] = pos(e)
       engine?.pointer("leave", x, y, e.pointerType === "touch")
     }
@@ -1703,7 +1752,49 @@ export default function SculptureHero(props: SculptureHeroProps) {
                 </a>
               </li>
             )}
+            <li className="sh-keep">
+              <button
+                type="button"
+                className="sh-menu-btn"
+                aria-label={mobileNavOpen ? "Close menu" : "Open menu"}
+                onClick={() => setMobileNavOpen((v) => !v)}
+              >
+                {mobileNavOpen ? <CloseIcon /> : <MenuIcon />}
+              </button>
+            </li>
           </ul>
+
+          {mobileNavOpen && (
+            <div className="sh-mobile-menu">
+              {navLinks.map((l, i) => (
+                <a
+                  key={i}
+                  className="sh-mobile-link"
+                  href={l.href}
+                  onClick={(e) => {
+                    setMobileNavOpen(false)
+                    l.onClick?.(e)
+                  }}
+                >
+                  <span>{l.label}</span>
+                  <Arrow />
+                </a>
+              ))}
+              {navCta && navCta.label && (
+                <a
+                  className="sh-mobile-cta"
+                  href={navCta.href}
+                  onClick={(e) => {
+                    setMobileNavOpen(false)
+                    navCta.onClick?.(e)
+                  }}
+                >
+                  <span>{navCta.label}</span>
+                  <Arrow />
+                </a>
+              )}
+            </div>
+          )}
         </nav>
       )}
 

@@ -212,66 +212,66 @@ export default function LandingPage() {
       </section>
 
       {/* ── TRUST & STATUTORY INDICATORS STRIP ──────────────────────────── */}
-      <aside aria-label="Statutory Trust Indicators" className="w-full bg-[#E2DFD8]/60 border-y border-[#151514]/10 py-4 px-6 sm:px-12 lg:px-20">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-3 gap-x-6 text-xs text-[#6F6E69] font-mono">
+      <aside aria-label="Statutory Trust Indicators" className="w-full bg-[#E2DFD8]/60 border-y border-[#151514]/10 py-3.5 px-4 sm:px-12 lg:px-20">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-3 gap-x-4 text-xs text-[#6F6E69] font-mono">
           <div className="flex items-center gap-2">
-            <CheckCircle2 size={14} className="text-emerald-700" />
-            <span className="text-[#151514] font-medium">AICTE APH 2024–25 Standard</span>
+            <CheckCircle2 size={14} className="text-emerald-700 flex-shrink-0" />
+            <span className="text-[#151514] font-medium truncate">AICTE APH 2024–25</span>
           </div>
           <div className="flex items-center gap-2">
-            <ShieldCheck size={14} className="text-emerald-700" />
-            <span>0% Affiliation Bias Conflict Matrix</span>
+            <ShieldCheck size={14} className="text-emerald-700 flex-shrink-0" />
+            <span className="truncate">0% Affiliation Bias</span>
           </div>
           <div className="flex items-center gap-2">
-            <Scale size={14} className="text-emerald-700" />
-            <span>Statutory Human-Only Quorum Voting</span>
+            <Scale size={14} className="text-emerald-700 flex-shrink-0" />
+            <span className="truncate">Human Quorum Voting</span>
           </div>
           <div className="flex items-center gap-2">
-            <Lock size={14} className="text-emerald-700" />
-            <span>Cryptographic Immutable Audit Log</span>
+            <Lock size={14} className="text-emerald-700 flex-shrink-0" />
+            <span className="truncate">Immutable Audit Log</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Clock size={14} className="text-emerald-700" />
-            <span>Automated Level-1 &amp; Level-2 SLA Escalation</span>
+          <div className="flex items-center gap-2 col-span-2 md:col-span-1">
+            <Clock size={14} className="text-emerald-700 flex-shrink-0" />
+            <span className="truncate">Level 1 &amp; 2 SLA Escapes</span>
           </div>
         </div>
       </aside>
 
       {/* ── SECTION 1: SIH CORE ARCHITECTURE PILLARS ────────────────────── */}
-      <section id="features" className="py-24 sm:py-32 px-6 sm:px-12 lg:px-20 max-w-7xl mx-auto">
-        <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-14 border-b border-[#151514]/10">
+      <section id="features" className="py-16 sm:py-28 px-4 sm:px-12 lg:px-20 max-w-7xl mx-auto">
+        <header className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 sm:pb-14 border-b border-[#151514]/10">
           <div>
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#6F6E69] mb-3 flex items-center gap-2">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#6F6E69] mb-2 sm:mb-3 flex items-center gap-2">
               <span className="w-5 h-px bg-[#151514]/40" />
               SIH Problem Statement Solution Architecture
             </p>
-            <h2 className="text-3xl sm:text-5xl font-medium tracking-tight leading-[1.05]">
-              Six pillars of <span className="font-editorial italic font-normal text-4xl sm:text-6xl text-[#151514]">zero-opacity governance.</span>
+            <h2 className="text-2xl sm:text-5xl font-medium tracking-tight leading-[1.08]">
+              Six pillars of <span className="font-editorial italic font-normal text-3xl sm:text-6xl text-[#151514]">zero-opacity governance.</span>
             </h2>
           </div>
-          <p className="max-w-md text-sm sm:text-base text-[#6F6E69] leading-relaxed">
+          <p className="max-w-md text-xs sm:text-base text-[#6F6E69] leading-relaxed">
             Engineered specifically to solve historical administrative bottlenecks across technical campuses, regional bureaus, and approval committees.
           </p>
         </header>
 
         {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 pt-8 sm:pt-14">
           
           {/* Pillar 01: Parcel Milestone Tracker */}
-          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
+          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
             <div>
-              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-6">
+              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-4 sm:mb-6">
                 <span>01 / TRACKING PIPELINE</span>
                 <span className="px-2 py-0.5 rounded bg-[#EBE9E5] text-[#151514]">INSTITUTIONS</span>
               </div>
-              <h3 className="text-2xl font-medium tracking-tight mb-3">
+              <h3 className="text-xl sm:text-2xl font-medium tracking-tight mb-2 sm:mb-3">
                 Parcel Milestone Tracker
               </h3>
-              <p className="text-[#6F6E69] text-sm leading-relaxed mb-6">
+              <p className="text-[#6F6E69] text-xs sm:text-sm leading-relaxed mb-6">
                 Visual docket tracking modelled after logistics parcel delivery. Technical institutes track every application milestone in real time: Submitted $\rightarrow$ Scrutiny $\rightarrow$ EVC $\rightarrow$ Hearing $\rightarrow$ Final Gazette Decree.
               </p>
             </div>
-            <div className="pt-6 border-t border-[#151514]/10 flex items-center justify-between">
+            <div className="pt-4 sm:pt-6 border-t border-[#151514]/10 flex items-center justify-between">
               <button
                 onClick={() => handleLaunchRole('u1', '/institution')}
                 className="inline-flex items-center gap-1.5 text-xs font-medium hover:gap-2.5 transition-all cursor-pointer text-[#151514]"
@@ -284,20 +284,20 @@ export default function LandingPage() {
           </article>
 
           {/* Pillar 02: Split-Screen Scrutiny */}
-          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
+          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
             <div>
-              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-6">
+              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-4 sm:mb-6">
                 <span>02 / DOCUMENT AUDIT</span>
                 <span className="px-2 py-0.5 rounded bg-[#EBE9E5] text-[#151514]">SCRUTINY</span>
               </div>
-              <h3 className="text-2xl font-medium tracking-tight mb-3">
+              <h3 className="text-xl sm:text-2xl font-medium tracking-tight mb-2 sm:mb-3">
                 Split-Screen Scrutiny Workbench
               </h3>
-              <p className="text-[#6F6E69] text-sm leading-relaxed mb-6">
+              <p className="text-[#6F6E69] text-xs sm:text-sm leading-relaxed mb-6">
                 Synchronized side-by-side document inspection and compliance audit. Scrutinizers audit 10 statutory conditions (land title, built-up area, FSI, faculty ratio) with standardized return codes and strict SLA clocks.
               </p>
             </div>
-            <div className="pt-6 border-t border-[#151514]/10 flex items-center justify-between">
+            <div className="pt-4 sm:pt-6 border-t border-[#151514]/10 flex items-center justify-between">
               <button
                 onClick={() => handleLaunchRole('u2', '/officer')}
                 className="inline-flex items-center gap-1.5 text-xs font-medium hover:gap-2.5 transition-all cursor-pointer text-[#151514]"
@@ -310,20 +310,20 @@ export default function LandingPage() {
           </article>
 
           {/* Pillar 03: EVC Conflict Engine */}
-          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
+          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
             <div>
-              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-6">
+              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-4 sm:mb-6">
                 <span>03 / SPATIAL ALLOCATION</span>
                 <span className="px-2 py-0.5 rounded bg-[#EBE9E5] text-[#151514]">EVC EXPERTS</span>
               </div>
-              <h3 className="text-2xl font-medium tracking-tight mb-3">
+              <h3 className="text-xl sm:text-2xl font-medium tracking-tight mb-2 sm:mb-3">
                 EVC Conflict &amp; Proximity Engine
               </h3>
-              <p className="text-[#6F6E69] text-sm leading-relaxed mb-6">
+              <p className="text-[#6F6E69] text-xs sm:text-sm leading-relaxed mb-6">
                 Automated expert visit committee assignment with zero affiliation bias. Algorithmically checks historical employment, alma mater ties, and travel itineraries with mandatory geo-tagged report verification.
               </p>
             </div>
-            <div className="pt-6 border-t border-[#151514]/10 flex items-center justify-between">
+            <div className="pt-4 sm:pt-6 border-t border-[#151514]/10 flex items-center justify-between">
               <button
                 onClick={() => handleLaunchRole('u5', '/evc')}
                 className="inline-flex items-center gap-1.5 text-xs font-medium hover:gap-2.5 transition-all cursor-pointer text-[#151514]"
@@ -336,20 +336,20 @@ export default function LandingPage() {
           </article>
 
           {/* Pillar 04: Human-in-the-Loop Consensus */}
-          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
+          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
             <div>
-              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-6">
+              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-4 sm:mb-6">
                 <span>04 / STATUTORY CONSENSUS</span>
                 <span className="px-2 py-0.5 rounded bg-[#EBE9E5] text-[#151514]">COMMITTEE</span>
               </div>
-              <h3 className="text-2xl font-medium tracking-tight mb-3">
+              <h3 className="text-xl sm:text-2xl font-medium tracking-tight mb-2 sm:mb-3">
                 Human-Only Quorum Voting
               </h3>
-              <p className="text-[#6F6E69] text-sm leading-relaxed mb-6">
+              <p className="text-[#6F6E69] text-xs sm:text-sm leading-relaxed mb-6">
                 AI synthesizes case dossiers with watermarked disclaimers; statutory human members vote blindly and independently. Once quorum is validated, the digital approval or rejection decree is issued with tamper-proof signatures.
               </p>
             </div>
-            <div className="pt-6 border-t border-[#151514]/10 flex items-center justify-between">
+            <div className="pt-4 sm:pt-6 border-t border-[#151514]/10 flex items-center justify-between">
               <button
                 onClick={() => handleLaunchRole('u6', '/committee')}
                 className="inline-flex items-center gap-1.5 text-xs font-medium hover:gap-2.5 transition-all cursor-pointer text-[#151514]"
@@ -362,20 +362,20 @@ export default function LandingPage() {
           </article>
 
           {/* Pillar 05: Pan-India Telemetry */}
-          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
+          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
             <div>
-              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-6">
+              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-4 sm:mb-6">
                 <span>05 / REGIONAL OVERSIGHT</span>
                 <span className="px-2 py-0.5 rounded bg-[#EBE9E5] text-[#151514]">HQ LEADERSHIP</span>
               </div>
-              <h3 className="text-2xl font-medium tracking-tight mb-3">
+              <h3 className="text-xl sm:text-2xl font-medium tracking-tight mb-2 sm:mb-3">
                 Pan-India Pendency &amp; SLA Matrix
               </h3>
-              <p className="text-[#6F6E69] text-sm leading-relaxed mb-6">
+              <p className="text-[#6F6E69] text-xs sm:text-sm leading-relaxed mb-6">
                 Cross-tabulated pendency heatmaps and ageing analysis across 33 regions. Tracks SLA velocity, identifies regional bottlenecks, and triggers automatic escalations for cases approaching statutory thresholds.
               </p>
             </div>
-            <div className="pt-6 border-t border-[#151514]/10 flex items-center justify-between">
+            <div className="pt-4 sm:pt-6 border-t border-[#151514]/10 flex items-center justify-between">
               <button
                 onClick={() => handleLaunchRole('u3', '/dashboard')}
                 className="inline-flex items-center gap-1.5 text-xs font-medium hover:gap-2.5 transition-all cursor-pointer text-[#151514]"
@@ -388,20 +388,20 @@ export default function LandingPage() {
           </article>
 
           {/* Pillar 06: Demo Time Simulator */}
-          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
+          <article className="group bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#151514]/30 transition-all duration-300">
             <div>
-              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-6">
+              <div className="flex items-center justify-between text-xs font-mono text-[#6F6E69] mb-4 sm:mb-6">
                 <span>06 / TIME SIMULATOR</span>
                 <span className="px-2 py-0.5 rounded bg-[#EBE9E5] text-[#151514]">SYSTEM ADMIN</span>
               </div>
-              <h3 className="text-2xl font-medium tracking-tight mb-3">
+              <h3 className="text-xl sm:text-2xl font-medium tracking-tight mb-2 sm:mb-3">
                 Interactive Time-Warp Engine
               </h3>
-              <p className="text-[#6F6E69] text-sm leading-relaxed mb-6">
+              <p className="text-[#6F6E69] text-xs sm:text-sm leading-relaxed mb-6">
                 Built-in demonstration simulator for hackathon evaluators. Fast-forward virtual time by 1 day, 7 days, or 15 days to witness dynamic SLA transitions, automated breach flags, and escalation notification dispatches.
               </p>
             </div>
-            <div className="pt-6 border-t border-[#151514]/10 flex items-center justify-between">
+            <div className="pt-4 sm:pt-6 border-t border-[#151514]/10 flex items-center justify-between">
               <button
                 onClick={() => handleLaunchRole('u7', '/admin')}
                 className="inline-flex items-center gap-1.5 text-xs font-medium hover:gap-2.5 transition-all cursor-pointer text-[#151514]"
@@ -417,69 +417,69 @@ export default function LandingPage() {
       </section>
 
       {/* ── SECTION 2: STATUTORY 4-STAGE PIPELINE WORKFLOW ──────────────── */}
-      <section id="workflow" className="py-24 sm:py-32 px-6 sm:px-12 lg:px-20 max-w-7xl mx-auto border-t border-[#151514]/10">
-        <header className="text-center max-w-3xl mx-auto mb-16">
-          <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#6F6E69] mb-3">
+      <section id="workflow" className="py-16 sm:py-28 px-4 sm:px-12 lg:px-20 max-w-7xl mx-auto border-t border-[#151514]/10">
+        <header className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#6F6E69] mb-2 sm:mb-3">
             AICTE Regulatory Lifecycle
           </p>
-          <h2 className="text-3xl sm:text-5xl font-medium tracking-tight leading-tight">
-            The 4-stage unbreachable <span className="font-editorial italic font-normal text-4xl sm:text-6xl text-[#151514]">pipeline.</span>
+          <h2 className="text-2xl sm:text-5xl font-medium tracking-tight leading-tight">
+            The 4-stage unbreachable <span className="font-editorial italic font-normal text-3xl sm:text-6xl text-[#151514]">pipeline.</span>
           </h2>
-          <p className="text-[#6F6E69] text-sm sm:text-base mt-4">
+          <p className="text-[#6F6E69] text-xs sm:text-base mt-3 sm:mt-4">
             How an application moves through statutory milestones with strict countdowns and zero paperwork bottlenecks.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           
-          <div className="p-6 bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl relative">
-            <div className="w-8 h-8 rounded-full bg-[#151514] text-[#EBE9E5] text-xs font-mono flex items-center justify-center mb-6 font-semibold">
+          <div className="p-5 sm:p-6 bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl relative">
+            <div className="w-8 h-8 rounded-full bg-[#151514] text-[#EBE9E5] text-xs font-mono flex items-center justify-center mb-4 sm:mb-6 font-semibold">
               01
             </div>
-            <h3 className="text-lg font-medium mb-2">Ingestion &amp; Land Audit</h3>
+            <h3 className="text-base sm:text-lg font-medium mb-1.5 sm:mb-2">Ingestion &amp; Land Audit</h3>
             <p className="text-xs sm:text-sm text-[#6F6E69] leading-relaxed">
               Geometric title verification against state land registries. Validates 30-year lease minimums, municipal NOCs, and non-encumbrance status.
             </p>
-            <div className="mt-6 pt-4 border-t border-[#151514]/10 text-[11px] font-mono text-[#6F6E69]">
+            <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-[#151514]/10 text-[11px] font-mono text-[#6F6E69]">
               Turnaround SLA: 7 Days
             </div>
           </div>
 
-          <div className="p-6 bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl relative">
-            <div className="w-8 h-8 rounded-full bg-[#151514] text-[#EBE9E5] text-xs font-mono flex items-center justify-center mb-6 font-semibold">
+          <div className="p-5 sm:p-6 bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl relative">
+            <div className="w-8 h-8 rounded-full bg-[#151514] text-[#EBE9E5] text-xs font-mono flex items-center justify-center mb-4 sm:mb-6 font-semibold">
               02
             </div>
-            <h3 className="text-lg font-medium mb-2">Conflict-Free Panel</h3>
+            <h3 className="text-base sm:text-lg font-medium mb-1.5 sm:mb-2">Conflict-Free Panel</h3>
             <p className="text-xs sm:text-sm text-[#6F6E69] leading-relaxed">
               Bipartite graph matching algorithm allocates EVC experts outside 100km radius, excluding alumni and former employers automatically.
             </p>
-            <div className="mt-6 pt-4 border-t border-[#151514]/10 text-[11px] font-mono text-[#6F6E69]">
+            <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-[#151514]/10 text-[11px] font-mono text-[#6F6E69]">
               Conflict Check: 100% Automated
             </div>
           </div>
 
-          <div className="p-6 bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl relative">
-            <div className="w-8 h-8 rounded-full bg-[#151514] text-[#EBE9E5] text-xs font-mono flex items-center justify-center mb-6 font-semibold">
+          <div className="p-5 sm:p-6 bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl relative">
+            <div className="w-8 h-8 rounded-full bg-[#151514] text-[#EBE9E5] text-xs font-mono flex items-center justify-center mb-4 sm:mb-6 font-semibold">
               03
             </div>
-            <h3 className="text-lg font-medium mb-2">Geo-Fenced EVC Audit</h3>
+            <h3 className="text-base sm:text-lg font-medium mb-1.5 sm:mb-2">Geo-Fenced EVC Audit</h3>
             <p className="text-xs sm:text-sm text-[#6F6E69] leading-relaxed">
               Inspectors conduct on-site appraisal with tamper-evident, GPS-watermarked laboratory videos and safety equipment inventories.
             </p>
-            <div className="mt-6 pt-4 border-t border-[#151514]/10 text-[11px] font-mono text-[#6F6E69]">
+            <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-[#151514]/10 text-[11px] font-mono text-[#6F6E69]">
               Turnaround SLA: 5 Days
             </div>
           </div>
 
-          <div className="p-6 bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl relative">
-            <div className="w-8 h-8 rounded-full bg-[#151514] text-[#EBE9E5] text-xs font-mono flex items-center justify-center mb-6 font-semibold">
+          <div className="p-5 sm:p-6 bg-[#F4F2EE] border border-[#151514]/10 rounded-2xl relative">
+            <div className="w-8 h-8 rounded-full bg-[#151514] text-[#EBE9E5] text-xs font-mono flex items-center justify-center mb-4 sm:mb-6 font-semibold">
               04
             </div>
-            <h3 className="text-lg font-medium mb-2">Quorum Human Decree</h3>
+            <h3 className="text-base sm:text-lg font-medium mb-1.5 sm:mb-2">Quorum Human Decree</h3>
             <p className="text-xs sm:text-sm text-[#6F6E69] leading-relaxed">
               Standing Hearing Committee validates quorum, executes blind vote on deficiencies, and issues cryptographic digital approval orders.
             </p>
-            <div className="mt-6 pt-4 border-t border-[#151514]/10 text-[11px] font-mono text-[#6F6E69]">
+            <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-[#151514]/10 text-[11px] font-mono text-[#6F6E69]">
               Decree Output: Digital Gazette
             </div>
           </div>
@@ -488,21 +488,21 @@ export default function LandingPage() {
       </section>
 
       {/* ── SECTION 3: LIVE INTERACTIVE SYSTEM SANDBOX ──────────────────── */}
-      <section id="sandbox" className="py-24 sm:py-32 px-6 sm:px-12 lg:px-20 max-w-7xl mx-auto border-t border-[#151514]/10">
-        <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <section id="sandbox" className="py-16 sm:py-28 px-4 sm:px-12 lg:px-20 max-w-7xl mx-auto border-t border-[#151514]/10">
+        <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12">
           <div>
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#6F6E69] mb-3 flex items-center gap-2">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#6F6E69] mb-2 sm:mb-3 flex items-center gap-2">
               <span className="w-5 h-px bg-[#151514]/40" />
               Interactive Prototype Sandbox
             </p>
-            <h2 className="text-3xl sm:text-5xl font-medium tracking-tight leading-[1.05]">
-              Experience the engine <span className="font-editorial italic font-normal text-4xl sm:text-6xl text-[#151514]">live.</span>
+            <h2 className="text-2xl sm:text-5xl font-medium tracking-tight leading-[1.05]">
+              Experience the engine <span className="font-editorial italic font-normal text-3xl sm:text-6xl text-[#151514]">live.</span>
             </h2>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center">
             <button
               onClick={() => setRoleModalOpen(true)}
-              className="px-4 py-2 rounded-full bg-[#151514] text-[#EBE9E5] text-xs font-semibold hover:bg-black transition-colors flex items-center gap-2"
+              className="w-full sm:w-auto justify-center px-4 py-2.5 sm:py-2 rounded-full bg-[#151514] text-[#EBE9E5] text-xs font-semibold hover:bg-black transition-colors flex items-center gap-2 cursor-pointer"
             >
               <Zap size={13} className="text-emerald-400" />
               <span>Select Persona to Enter Portal</span>
@@ -514,72 +514,75 @@ export default function LandingPage() {
         <div className="bg-[#F4F2EE] border border-[#151514]/15 rounded-2xl overflow-hidden shadow-sm">
           
           {/* Top Bar with Tab Switchers */}
-          <div className="px-6 py-4 bg-[#EBE9E5] border-b border-[#151514]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 bg-[#EBE9E5] border-b border-[#151514]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <div className="flex gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#151514]/20" />
                 <span className="w-2.5 h-2.5 rounded-full bg-[#151514]/20" />
                 <span className="w-2.5 h-2.5 rounded-full bg-[#151514]/20" />
               </div>
-              <span className="text-xs font-mono text-[#6F6E69] ml-2">approvalpulse.aicte.gov.in · live-prototype</span>
+              <span className="text-[11px] sm:text-xs font-mono text-[#6F6E69] ml-1.5 truncate">approvalpulse.aicte.gov.in · live-prototype</span>
             </div>
 
-            {/* View Switcher Tabs */}
-            <div className="inline-flex rounded-full border border-[#151514]/15 bg-[#F4F2EE] p-0.5 text-xs">
+            {/* View Switcher Tabs (Scrollable on small mobile) */}
+            <div className="inline-flex max-w-full overflow-x-auto no-scrollbar rounded-full border border-[#151514]/15 bg-[#F4F2EE] p-0.5 text-xs touch-pan-x">
               <button
                 onClick={() => setActivePreviewTab('timeline')}
-                className={`px-3 py-1 rounded-full font-medium transition-all ${
+                className={`px-3 py-1 rounded-full font-medium transition-all whitespace-nowrap cursor-pointer ${
                   activePreviewTab === 'timeline'
                     ? 'bg-[#151514] text-[#EBE9E5]'
                     : 'text-[#6F6E69] hover:text-[#151514]'
                 }`}
               >
-                Parcel Milestone Tracker
+                <span className="hidden sm:inline">Parcel Milestone Tracker</span>
+                <span className="sm:hidden">Milestones</span>
               </button>
               <button
                 onClick={() => setActivePreviewTab('scrutiny')}
-                className={`px-3 py-1 rounded-full font-medium transition-all ${
+                className={`px-3 py-1 rounded-full font-medium transition-all whitespace-nowrap cursor-pointer ${
                   activePreviewTab === 'scrutiny'
                     ? 'bg-[#151514] text-[#EBE9E5]'
                     : 'text-[#6F6E69] hover:text-[#151514]'
                 }`}
               >
-                Split-Screen Scrutiny
+                <span className="hidden sm:inline">Split-Screen Scrutiny</span>
+                <span className="sm:hidden">Scrutiny</span>
               </button>
               <button
                 onClick={() => setActivePreviewTab('regional')}
-                className={`px-3 py-1 rounded-full font-medium transition-all ${
+                className={`px-3 py-1 rounded-full font-medium transition-all whitespace-nowrap cursor-pointer ${
                   activePreviewTab === 'regional'
                     ? 'bg-[#151514] text-[#EBE9E5]'
                     : 'text-[#6F6E69] hover:text-[#151514]'
                 }`}
               >
-                Regional Pendency Matrix
+                <span className="hidden sm:inline">Regional Pendency Matrix</span>
+                <span className="sm:hidden">Regional</span>
               </button>
             </div>
           </div>
 
           {/* TAB 1: PARCEL MILESTONE TRACKER */}
           {activePreviewTab === 'timeline' && (
-            <div className="p-6 sm:p-10">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#151514]/10 mb-8">
+            <div className="p-4 sm:p-10">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-6 border-b border-[#151514]/10 mb-6 sm:mb-8">
                 <div>
-                  <div className="text-xs font-mono text-[#6F6E69]">ACTIVE DOCKET · REF NO: AICTE/MH/2024/NI/0042</div>
-                  <h3 className="text-xl sm:text-2xl font-medium mt-1">Sunrise Institute of Technology, Pune</h3>
+                  <div className="text-[11px] font-mono text-[#6F6E69]">ACTIVE DOCKET · REF NO: AICTE/MH/2024/NI/0042</div>
+                  <h3 className="text-lg sm:text-2xl font-medium mt-1">Sunrise Institute of Technology, Pune</h3>
                   <p className="text-xs text-[#6F6E69] mt-0.5">Application: New Technical Campus (B.Tech Computer Engineering &amp; AI)</p>
                 </div>
-                <div className="text-right">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-300">
-                    <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-                    <span>SLA: 72% Elapsed · In Window</span>
+                <div className="sm:text-right text-left flex sm:block items-center justify-between">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-600 animate-pulse" />
+                    <span>SLA: 72% Elapsed</span>
                   </div>
-                  <div className="text-[11px] font-mono text-[#6F6E69] mt-1">Assigned Scrutinizer: Rajiv Menon</div>
+                  <div className="text-[10px] sm:text-[11px] font-mono text-[#6F6E69] sm:mt-1">Scrutinizer: Rajiv Menon</div>
                 </div>
               </div>
 
               {/* Step Progress Line */}
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-8">
-                <div className="p-4 bg-[#EBE9E5] rounded-xl border border-[#151514]/10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                <div className="p-3.5 sm:p-4 bg-[#EBE9E5] rounded-xl border border-[#151514]/10">
                   <div className="flex items-center justify-between text-xs font-mono mb-2">
                     <span className="text-emerald-700 font-semibold">STAGE 01</span>
                     <Check size={14} className="text-emerald-700" />
@@ -588,7 +591,7 @@ export default function LandingPage() {
                   <div className="text-[11px] text-[#6F6E69] mt-1">Verified: 05 Sep 2024</div>
                 </div>
 
-                <div className="p-4 bg-white rounded-xl border-2 border-[#151514] shadow-xs">
+                <div className="p-3.5 sm:p-4 bg-white rounded-xl border-2 border-[#151514] shadow-xs">
                   <div className="flex items-center justify-between text-xs font-mono mb-2">
                     <span className="text-[#151514] font-semibold">STAGE 02</span>
                     <span className="w-2 h-2 rounded-full bg-[#151514] animate-ping" />
@@ -597,7 +600,7 @@ export default function LandingPage() {
                   <div className="text-[11px] text-[#6F6E69] mt-1">Scheduled: 18 Oct 2024</div>
                 </div>
 
-                <div className="p-4 bg-[#EBE9E5]/60 rounded-xl border border-[#151514]/5 opacity-60">
+                <div className="p-3.5 sm:p-4 bg-[#EBE9E5]/60 rounded-xl border border-[#151514]/5 opacity-60">
                   <div className="flex items-center justify-between text-xs font-mono mb-2">
                     <span className="text-[#6F6E69]">STAGE 03</span>
                     <Clock size={14} className="text-[#6F6E69]" />
@@ -606,7 +609,7 @@ export default function LandingPage() {
                   <div className="text-[11px] text-[#6F6E69] mt-1">Awaiting Inspection Report</div>
                 </div>
 
-                <div className="p-4 bg-[#EBE9E5]/60 rounded-xl border border-[#151514]/5 opacity-60">
+                <div className="p-3.5 sm:p-4 bg-[#EBE9E5]/60 rounded-xl border border-[#151514]/5 opacity-60">
                   <div className="flex items-center justify-between text-xs font-mono mb-2">
                     <span className="text-[#6F6E69]">STAGE 04</span>
                     <Lock size={14} className="text-[#6F6E69]" />
@@ -617,7 +620,7 @@ export default function LandingPage() {
               </div>
 
               {/* Active Undertakings Warning */}
-              <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-start justify-between gap-4 text-xs text-amber-900">
+              <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-900">
                 <div className="flex items-start gap-2.5">
                   <AlertTriangle size={16} className="text-amber-700 flex-shrink-0 mt-0.5" />
                   <div>
@@ -626,7 +629,7 @@ export default function LandingPage() {
                 </div>
                 <button
                   onClick={() => handleLaunchRole('u1', '/institution')}
-                  className="px-3 py-1 bg-amber-800 text-white rounded font-medium text-xs whitespace-nowrap hover:bg-amber-900 transition-colors"
+                  className="w-full sm:w-auto px-3 py-2 sm:py-1 bg-amber-800 text-white rounded font-medium text-xs whitespace-nowrap hover:bg-amber-900 transition-colors cursor-pointer text-center"
                 >
                   Upload Evidence
                 </button>
@@ -636,19 +639,17 @@ export default function LandingPage() {
 
           {/* TAB 2: SPLIT-SCREEN SCRUTINY CHECKLIST */}
           {activePreviewTab === 'scrutiny' && (
-            <div className="p-6 sm:p-10">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#151514]/10 mb-8">
+            <div className="p-4 sm:p-10">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-6 border-b border-[#151514]/10 mb-6 sm:mb-8">
                 <div>
-                  <div className="text-xs font-mono text-[#6F6E69]">SCRUTINY OFFICER AUDIT WORKBENCH</div>
-                  <h3 className="text-xl sm:text-2xl font-medium mt-1">Interactive 10-Point Regulatory Checklist</h3>
+                  <div className="text-[11px] font-mono text-[#6F6E69]">SCRUTINY OFFICER AUDIT WORKBENCH</div>
+                  <h3 className="text-lg sm:text-2xl font-medium mt-1">Interactive 10-Point Regulatory Checklist</h3>
                   <p className="text-xs text-[#6F6E69] mt-0.5">Toggle statutory conditions below to test dynamic scoring and deficiency notice generation.</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="text-right">
-                    <div className="text-xs font-mono text-[#6F6E69]">COMPLIANCE SCORE</div>
-                    <div className={`text-2xl font-bold ${complianceScore >= 80 ? 'text-emerald-700' : 'text-amber-700'}`}>
-                      {complianceScore}%
-                    </div>
+                <div className="flex sm:flex-col items-center sm:items-end justify-between gap-2">
+                  <div className="text-[11px] font-mono text-[#6F6E69]">COMPLIANCE SCORE</div>
+                  <div className={`text-xl sm:text-2xl font-bold ${complianceScore >= 80 ? 'text-emerald-700' : 'text-amber-700'}`}>
+                    {complianceScore}%
                   </div>
                 </div>
               </div>
@@ -659,10 +660,10 @@ export default function LandingPage() {
                   <div
                     key={item.id}
                     onClick={() => toggleChecklist(item.id)}
-                    className="p-4 flex items-center justify-between gap-4 hover:bg-[#F4F2EE] transition-colors cursor-pointer"
+                    className="p-3.5 sm:p-4 flex items-start sm:items-center justify-between gap-3 hover:bg-[#F4F2EE] transition-colors cursor-pointer"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${
+                    <div className="flex items-start sm:items-center gap-3">
+                      <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors flex-shrink-0 mt-0.5 sm:mt-0 ${
                         item.compliant
                           ? 'bg-[#151514] border-[#151514] text-white'
                           : 'border-[#151514]/30 text-transparent'
@@ -670,13 +671,13 @@ export default function LandingPage() {
                         <Check size={13} />
                       </div>
                       <div>
-                        <div className="text-sm font-medium">{item.label}</div>
-                        <div className="text-[11px] font-mono text-[#6F6E69]">{item.category}</div>
+                        <div className="text-xs sm:text-sm font-medium leading-snug">{item.label}</div>
+                        <div className="text-[10px] sm:text-[11px] font-mono text-[#6F6E69] mt-0.5">{item.category}</div>
                       </div>
                     </div>
 
-                    <div>
-                      <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                    <div className="flex-shrink-0">
+                      <span className={`px-2 py-0.5 sm:px-2.5 rounded-full text-[10px] sm:text-xs font-medium ${
                         item.compliant
                           ? 'bg-emerald-100 text-emerald-800'
                           : 'bg-red-100 text-red-800'
@@ -688,13 +689,13 @@ export default function LandingPage() {
                 ))}
               </div>
 
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
                 <span className="text-xs text-[#6F6E69]">
                   {compliantCount} of {checklistItems.length} statutory conditions verified.
                 </span>
                 <button
                   onClick={() => handleLaunchRole('u2', '/officer')}
-                  className="px-4 py-2 bg-[#151514] text-[#EBE9E5] text-xs font-medium rounded-lg hover:bg-black transition-colors"
+                  className="w-full sm:w-auto px-4 py-2.5 sm:py-2 bg-[#151514] text-[#EBE9E5] text-xs font-medium rounded-lg hover:bg-black transition-colors cursor-pointer text-center"
                 >
                   Open Full Scrutiny Workbench →
                 </button>
@@ -704,20 +705,20 @@ export default function LandingPage() {
 
           {/* TAB 3: REGIONAL PENDENCY MATRIX */}
           {activePreviewTab === 'regional' && (
-            <div className="p-6 sm:p-10">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#151514]/10 mb-8">
+            <div className="p-4 sm:p-10">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-6 border-b border-[#151514]/10 mb-6 sm:mb-8">
                 <div>
-                  <div className="text-xs font-mono text-[#6F6E69]">PAN-INDIA TELEMETRY</div>
-                  <h3 className="text-xl sm:text-2xl font-medium mt-1">Regional Bureau Pendency Overview</h3>
+                  <div className="text-[11px] font-mono text-[#6F6E69]">PAN-INDIA TELEMETRY</div>
+                  <h3 className="text-lg sm:text-2xl font-medium mt-1">Regional Bureau Pendency Overview</h3>
                   <p className="text-xs text-[#6F6E69] mt-0.5">Live distribution of active applications across regional headquarters.</p>
                 </div>
-                <div className="text-right">
-                  <div className="text-xs font-mono text-[#6F6E69]">ACTIVE APPLICATIONS</div>
-                  <div className="text-2xl font-bold text-[#151514]">1,428 Cases</div>
+                <div className="flex sm:flex-col items-center sm:items-end justify-between gap-2">
+                  <div className="text-[11px] font-mono text-[#6F6E69]">ACTIVE APPLICATIONS</div>
+                  <div className="text-xl sm:text-2xl font-bold text-[#151514]">1,428 Cases</div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6">
                 {PENDENCY_DATA.map((row) => {
                   const total = row.preliminary_scrutiny + row.evc_queue + row.shc_committee + row.ca_decision;
                   return (
@@ -748,7 +749,7 @@ export default function LandingPage() {
               <div className="text-right">
                 <button
                   onClick={() => handleLaunchRole('u4', '/dashboard')}
-                  className="px-4 py-2 bg-[#151514] text-[#EBE9E5] text-xs font-medium rounded-lg hover:bg-black transition-colors"
+                  className="w-full sm:w-auto px-4 py-2.5 sm:py-2 bg-[#151514] text-[#EBE9E5] text-xs font-medium rounded-lg hover:bg-black transition-colors cursor-pointer text-center"
                 >
                   Enter National Head Dashboard →
                 </button>
@@ -760,49 +761,49 @@ export default function LandingPage() {
       </section>
 
       {/* ── SECTION 4: STATUTORY STANDARDS & PHILOSOPHY ─────────────────── */}
-      <section id="standards" className="py-24 sm:py-32 px-6 sm:px-12 lg:px-20 max-w-7xl mx-auto border-t border-[#151514]/10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <section id="standards" className="py-16 sm:py-28 px-4 sm:px-12 lg:px-20 max-w-7xl mx-auto border-t border-[#151514]/10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#6F6E69] mb-3 flex items-center gap-2">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#6F6E69] mb-2 sm:mb-3 flex items-center gap-2">
               <span className="w-5 h-px bg-[#151514]/40" />
               The AICTE Standard
             </p>
-            <h2 className="text-3xl sm:text-5xl font-medium tracking-tight leading-[1.05] mb-6">
+            <h2 className="text-2xl sm:text-5xl font-medium tracking-tight leading-[1.08] mb-4 sm:mb-6">
               Precision of engineering. <br />
-              <span className="font-editorial italic font-normal text-4xl sm:text-6xl text-[#151514]">Patience of governance.</span>
+              <span className="font-editorial italic font-normal text-3xl sm:text-6xl text-[#151514]">Patience of governance.</span>
             </h2>
-            <p className="text-[#6F6E69] text-base leading-relaxed mb-8">
+            <p className="text-[#6F6E69] text-xs sm:text-base leading-relaxed mb-6 sm:mb-8">
               We reject the premise that institutional or statutory software must be slow, convoluted, or opaque. Unambiguous status feedback and deterministic workflows are fundamental to public accountability.
             </p>
-            <div className="p-6 bg-[#F4F2EE] rounded-xl border border-[#151514]/10">
+            <div className="p-5 sm:p-6 bg-[#F4F2EE] rounded-xl border border-[#151514]/10">
               <div className="text-xs font-mono text-[#6F6E69] mb-1">NATIONAL SCALE</div>
-              <div className="text-3xl font-semibold tracking-tight">14,200+</div>
+              <div className="text-2xl sm:text-3xl font-semibold tracking-tight">14,200+</div>
               <p className="text-xs text-[#6F6E69] mt-1">Technical campuses monitored under unified SLA timeline with zero paper bottlenecks.</p>
             </div>
           </div>
 
           <div className="lg:col-span-7 flex flex-col divide-y divide-[#151514]/10">
             
-            <div className="py-8 first:pt-0">
+            <div className="py-6 sm:py-8 first:pt-0">
               <span className="text-xs font-mono text-[#6F6E69]">01 / PRINCIPLE</span>
-              <h3 className="text-xl sm:text-2xl font-medium mt-1 mb-2">Deterministic over Probabilistic</h3>
-              <p className="text-sm sm:text-base text-[#6F6E69] leading-relaxed">
+              <h3 className="text-lg sm:text-2xl font-medium mt-1 mb-1.5 sm:mb-2">Deterministic over Probabilistic</h3>
+              <p className="text-xs sm:text-base text-[#6F6E69] leading-relaxed">
                 Administrative governance cannot be governed by black-box algorithms. Every land non-encumbrance check, faculty ratio, and safety certificate follows strict statutory rules that any judge, officer, or citizen can audit.
               </p>
             </div>
 
-            <div className="py-8">
+            <div className="py-6 sm:py-8">
               <span className="text-xs font-mono text-[#6F6E69]">02 / PRINCIPLE</span>
-              <h3 className="text-xl sm:text-2xl font-medium mt-1 mb-2">Radical Structural Transparency</h3>
-              <p className="text-sm sm:text-base text-[#6F6E69] leading-relaxed">
+              <h3 className="text-lg sm:text-2xl font-medium mt-1 mb-1.5 sm:mb-2">Radical Structural Transparency</h3>
+              <p className="text-xs sm:text-base text-[#6F6E69] leading-relaxed">
                 Borrowing from logistics parcel tracking: An application is never 'in process'. It is at a specific desk, with an assigned officer, against an active SLA countdown timer. If a desk stalls, the system auto-escalates.
               </p>
             </div>
 
-            <div className="py-8">
+            <div className="py-6 sm:py-8">
               <span className="text-xs font-mono text-[#6F6E69]">03 / PRINCIPLE</span>
-              <h3 className="text-xl sm:text-2xl font-medium mt-1 mb-2">Human-Exclusive Sovereignty</h3>
-              <p className="text-sm sm:text-base text-[#6F6E69] leading-relaxed">
+              <h3 className="text-lg sm:text-2xl font-medium mt-1 mb-1.5 sm:mb-2">Human-Exclusive Sovereignty</h3>
+              <p className="text-xs sm:text-base text-[#6F6E69] leading-relaxed">
                 AI and automation ingest documents, flag expired NOCs, and compute architectural ratios. However, sovereign authority to approve, deny, or place on hold belongs exclusively to appointed human committee members.
               </p>
             </div>
@@ -812,22 +813,22 @@ export default function LandingPage() {
       </section>
 
       {/* ── SECTION 5: REGULATORY FOOTER ────────────────────────────────── */}
-      <footer id="contact" className="py-16 sm:py-24 px-6 sm:px-12 lg:px-20 max-w-7xl mx-auto border-t border-[#151514]/10 text-xs">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-[#151514]/10">
+      <footer id="contact" className="py-12 sm:py-24 px-4 sm:px-12 lg:px-20 max-w-7xl mx-auto border-t border-[#151514]/10 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-12 pb-12 sm:pb-16 border-b border-[#151514]/10">
           
           <div className="md:col-span-4">
             <div className="text-lg font-medium tracking-tight mb-2">ApprovalPulse™</div>
             <p className="text-[#6F6E69] leading-relaxed max-w-xs">
               AICTE Technical Institution Approval &amp; Compliance Management System. Designed for the Smart India Hackathon (SIH).
             </p>
-            <div className="mt-6 flex items-center gap-2 text-[11px] font-mono text-[#6F6E69]">
-              <span className="w-2 h-2 rounded-full bg-emerald-600" />
-              <span>All 33 Regional Portals Operational · {istTime}</span>
+            <div className="mt-4 sm:mt-6 flex items-center gap-2 text-[11px] font-mono text-[#6F6E69]">
+              <span className="w-2 h-2 rounded-full bg-emerald-600 flex-shrink-0" />
+              <span className="truncate">All 33 Regional Portals Operational · {istTime}</span>
             </div>
           </div>
 
           <div className="md:col-span-2 space-y-2">
-            <div className="font-medium text-[#151514] mb-3">Architecture</div>
+            <div className="font-medium text-[#151514] mb-2 sm:mb-3">Architecture</div>
             <div><a href="#features" onClick={(e) => { e.preventDefault(); scrollTo('features'); }} className="text-[#6F6E69] hover:text-[#151514] transition-colors">Core Features</a></div>
             <div><a href="#workflow" onClick={(e) => { e.preventDefault(); scrollTo('workflow'); }} className="text-[#6F6E69] hover:text-[#151514] transition-colors">4-Stage Pipeline</a></div>
             <div><a href="#standards" onClick={(e) => { e.preventDefault(); scrollTo('standards'); }} className="text-[#6F6E69] hover:text-[#151514] transition-colors">SLA Standards</a></div>
@@ -835,7 +836,7 @@ export default function LandingPage() {
           </div>
 
           <div className="md:col-span-3 space-y-2">
-            <div className="font-medium text-[#151514] mb-3">Live Role Portals</div>
+            <div className="font-medium text-[#151514] mb-2 sm:mb-3">Live Role Portals</div>
             <div><button onClick={() => handleLaunchRole('u1', '/institution')} className="text-[#6F6E69] hover:text-[#151514] text-left transition-colors">Institution Nodal Portal</button></div>
             <div><button onClick={() => handleLaunchRole('u2', '/officer')} className="text-[#6F6E69] hover:text-[#151514] text-left transition-colors">Scrutiny Workbench</button></div>
             <div><button onClick={() => handleLaunchRole('u5', '/evc')} className="text-[#6F6E69] hover:text-[#151514] text-left transition-colors">EVC Expert Scheduler</button></div>
@@ -845,7 +846,7 @@ export default function LandingPage() {
           </div>
 
           <div className="md:col-span-3 space-y-3">
-            <div className="font-medium text-[#151514] mb-3">Evaluator Access</div>
+            <div className="font-medium text-[#151514] mb-2 sm:mb-3">Evaluator Access</div>
             <p className="text-[#6F6E69] leading-relaxed">
               Launch directly into any of the 7 pre-configured evaluator personas or inspect architectural documentation.
             </p>
@@ -861,12 +862,12 @@ export default function LandingPage() {
 
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[#6F6E69] text-[11px] font-mono">
+        <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[#6F6E69] text-[11px] font-mono">
           <div>
             © 2024–2026 ApprovalPulse. Ministry of Education · All India Council for Technical Education (AICTE).
           </div>
-          <div className="flex items-center gap-6">
-            <span>New Delhi Headquarters · 33 Regional Bureaus</span>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 sm:gap-6">
+            <span>New Delhi HQ · 33 Regions</span>
             <span className="text-[#6F6E69]/80">APH 2024-25 Compliance Architecture</span>
           </div>
         </div>
@@ -874,8 +875,8 @@ export default function LandingPage() {
 
       {/* ── MODAL: 7 DEMO ROLE LAUNCHER ─────────────────────────────────── */}
       {roleModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#151514]/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-[#F4F2EE] border border-[#151514]/20 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#151514]/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-[#F4F2EE] border border-[#151514]/20 rounded-2xl w-full max-w-2xl max-h-[92dvh] overflow-y-auto p-4 sm:p-8 shadow-2xl">
             <div className="flex items-center justify-between pb-4 border-b border-[#151514]/10 mb-6">
               <div>
                 <p className="text-[11px] font-mono uppercase tracking-widest text-[#6F6E69]">SIH Evaluator Access</p>
@@ -936,8 +937,8 @@ export default function LandingPage() {
 
       {/* ── MODAL: PROJECT INQUIRY & CONTACT ────────────────────────────── */}
       {inquiryModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#151514]/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-[#F4F2EE] border border-[#151514]/20 rounded-2xl w-full max-w-lg p-6 sm:p-8 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#151514]/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-[#F4F2EE] border border-[#151514]/20 rounded-2xl w-full max-w-lg max-h-[92dvh] overflow-y-auto p-4 sm:p-8 shadow-2xl">
             <div className="flex items-center justify-between pb-4 border-b border-[#151514]/10 mb-6">
               <div>
                 <p className="text-[11px] font-mono uppercase tracking-widest text-[#6F6E69]">Institution Inquiries</p>
